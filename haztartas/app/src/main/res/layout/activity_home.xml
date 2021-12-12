@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".homeActivity">
+
+    <RelativeLayout
+        android:layout_width="350dp"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/freezerButton"
+            android:onClick="clickFreezerButton"
+            android:layout_width="105dp"
+            android:layout_height="84dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginBottom="15dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/transparent"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/freezer"/>
+
+        <ImageButton
+            android:id="@+id/freezerOpenButton"
+            android:layout_width="137dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="18dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/transparent"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/freezer_open"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:id="@+id/fridgeButton"
+            android:onClick="clickFridgeButton"
+            android:layout_width="105dp"
+            android:layout_height="155dp"
+            android:layout_marginStart="50dp"
+            android:layout_above="@+id/freezerButton"
+            android:layout_alignParentEnd="@+id/freezerButton"
+            android:layout_marginBottom="-2dp"
+            android:background="@color/transparent"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/fridge" />
+
+        <ImageButton
+            android:id="@+id/fridgeOpenButton"
+            android:layout_width="137dp"
+            android:layout_height="172dp"
+            android:layout_marginStart="18dp"
+            android:layout_above="@+id/freezerButton"
+            android:layout_alignParentEnd="@+id/freezerButton"
+            android:layout_marginBottom="-2dp"
+            android:background="@color/transparent"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/fridge_open"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:id="@+id/vegetables"
+            android:onClick="clickVegetablesButton"
+            android:layout_width="55dp"
+            android:layout_height="82dp"
+            android:layout_marginStart="270dp"
+            android:layout_marginBottom="15dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/transparent"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/vegetables"/>
+
+        <ImageButton
+            android:id="@+id/cupboardButton"
+            android:onClick="clickCupboardButton"
+            android:layout_width="105dp"
+            android:layout_height="82dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginStart="160dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/transparent"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/cupboard" />
+
+        <ImageButton
+            android:id="@+id/cupboardOpenButton"
+            android:layout_width="166dp"
+            android:layout_height="97dp"
+            android:layout_marginStart="130dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/transparent"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/cupboard_open"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:id="@+id/recipeButton"
+            android:layout_width="47dp"
+            android:layout_height="37dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="279dp"
+            android:layout_marginBottom="125dp"
+            android:background="@color/transparent"
+            android:onClick="clickRecipeButton"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/recipe_shelf" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="165dp"
+            android:layout_marginBottom="107dp"
+            app:srcCompat="@drawable/window" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
