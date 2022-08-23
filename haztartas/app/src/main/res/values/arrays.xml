@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="recipe_categories">
+        <item>leves</item>
+        <item>főétel</item>
+        <item>desszert</item>
+    </string-array>
+
+    <string-array name="recipe_quantity_units">
+        <item>fő</item>
+        <item>darab</item>
+    </string-array>
+
+    <string-array name="ingredient_quantity_units">
+        <item>ml</item>
+        <item>liter</item>
+        <item>g</item>
+        <item>kg</item>
+        <item>darab</item>
+        <item>evőkanál</item>
+        <item>teáskanál</item>
+        <item>kávéskanál</item>
+        <item>csipet</item>
+        <item>marék</item>
+        <item></item>
+    </string-array>
+
+</resources>
