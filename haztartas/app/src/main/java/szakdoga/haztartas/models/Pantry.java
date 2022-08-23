@@ -4,28 +4,28 @@ package szakdoga.haztartas.models;
  * Kamrában lévő élelmiszer leírására szolgáló modell
  */
 public class Pantry {
-    private int id;
+    private String id;
     private String name; // általánosított név (pl. rizs, nem coop gazdaságos rizs vagy S-budget rizs (ezek egy csoportba tartoznak))
-    private int quantity; // mennyiség
+    private double quantity; // mennyiség
     private String quantityUnit; // mennyiségi egység (g, l, csomag, db)
-    private Food[] foods; // élelmiszerek, amellyek ebbe a csoportba tartoznak
+    private String where; // Hol tároljuk (hűtő, fagyasztó...)
 
-    public Pantry(int id, String name, int quantity, String quantityUnit, Food[] foods) {
+    public Pantry(String name, double quantity, String quantityUnit, String where) {
+        this.name = name;
+        this.quantity = quantity;
+        this.quantityUnit = quantityUnit;
+        this.where = where;
+    }
+
+    public Pantry(String id, String name, double quantity, String quantityUnit, String where) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
         this.quantityUnit = quantityUnit;
-        this.foods = foods;
+        this.where = where;
     }
 
-    public Pantry(int id, String name, int quantity, String quantityUnit) {
-        this.id = id;
-        this.name = name;
-        this.quantity = quantity;
-        this.quantityUnit = quantityUnit;
-    }
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -35,17 +35,9 @@ public class Pantry {
 
     /**
      *
-     * @return élelmiszerek, amellyek ebbe a csoportba tartoznak
-     */
-    public Food[] getFoods() {
-        return foods;
-    }
-
-    /**
-     *
      * @return mennyiség
      */
-    public int getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 

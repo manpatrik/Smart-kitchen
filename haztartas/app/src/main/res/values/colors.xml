@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="pantryItemBlue">#438ECC</color>
     <color name="transparent">#00000000</color>
+    <color name="grey">#C1C1C1</color>
 </resources>

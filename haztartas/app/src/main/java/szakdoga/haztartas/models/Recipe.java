@@ -1,26 +1,30 @@
 package szakdoga.haztartas.models;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Receptek leírására szolgáló modell
  */
-public class Recipe {
-    private int id;
+public class Recipe implements Serializable {
+    private String id;
     private String name;
     private String category;
     private String description;
-    private Ingredient[] ingredients;
-    private int preparationTime;
+    private String ingredients;
+    private String preparationTime;
     private int difficulty;
     private int quantity; // mennyiség
     private String quantityUnit; // fő, db, tepsi (mennyiségi egység)
 
-    public Recipe(int id, String name, int preparationTime) {
+    public Recipe(String id, String name, String preparationTime) {
         this.id = id;
         this.name = name;
         this.preparationTime = preparationTime;
     }
 
-    public Recipe(int id, String name, String category, String description, Ingredient[] ingredients, int preparationTime, int difficulty, int quantity, String quantityUnit) {
+    public Recipe(String id, String name, String category, String description, String ingredients, String preparationTime, int difficulty, int quantity, String quantityUnit) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -32,7 +36,7 @@ public class Recipe {
         this.quantityUnit = quantityUnit;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -48,7 +52,7 @@ public class Recipe {
      *
      * @return elkészítési idő
      */
-    public int getPreparationTime() {
+    public String getPreparationTime() {
         return preparationTime;
     }
 
@@ -76,7 +80,22 @@ public class Recipe {
         return category;
     }
 
-    public Ingredient[] getIngredients() {
+    public List<Ingredient> getIngredients(){
+        List<Ingredient> ingredients = new ArrayList<>();
+
+        String [] ingredientsString = this.ingredients.split("#");
+        if (ingredientsString.length == 0){
+            return null;
+        }
+        for (String ingredientString : ingredientsString){
+
+            String [] temp = ingredientString.split(";");
+            if ( temp.length == 0){
+                return null;
+            }
+            Ingredient ingredient = new Ingredient(temp[0], temp[1], temp[2]);
+            ingredients.add(ingredient);
+        }
         return ingredients;
     }
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "798861688665",
+    "project_id": "smart-kitchen-3221f",
+    "storage_bucket": "smart-kitchen-3221f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:798861688665:android:d79fa08fe2b20bba1c5648",
+        "android_client_info": {
+          "package_name": "szakdoga.haztartas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "798861688665-cuuetd76qgk5t7miq87g14bsj7ljmgj2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC98DY4o8vkOrCIomBnmflbe0VOV7NV6IU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "798861688665-cuuetd76qgk5t7miq87g14bsj7ljmgj2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

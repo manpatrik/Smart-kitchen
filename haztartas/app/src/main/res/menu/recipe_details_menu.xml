@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/recipeModify"
+        android:title="@string/reccept_modositasa" />
+
+    <item
+        android:id="@+id/recipeDelete"
+        android:title="@string/recept_torlese" />
+
+    <item
+        android:id="@+id/logOut"
+        android:title="@string/kijelentkezes" />
+</menu>

@@ -9,23 +9,27 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.io.Serializable;
 import java.util.List;
 
 import szakdoga.haztartas.R;
-import szakdoga.haztartas.RecipeDetailsActivity;
 import szakdoga.haztartas.models.Recipe;
 
 public class RecipeItemAdapter extends RecyclerView.Adapter<RecipeItemAdapter.ViewHolder> {
 
     private Context context;
     private List<Recipe> recipes;
+    private String userId;
+    private String homeId;
 
-    public RecipeItemAdapter(Context context, List<Recipe> recipes) {
+    public RecipeItemAdapter(Context context, List<Recipe> recipes, String userId, String homeId) {
         this.context = context;
         this.recipes = recipes;
+        this.userId = userId;
+        this.homeId = homeId;
     }
 
     @Override
@@ -36,7 +40,7 @@ public class RecipeItemAdapter extends RecyclerView.Adapter<RecipeItemAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bindTo(recipes.get(position));
+        holder.bindTo(recipes.get(position), userId, homeId);
     }
 
     @Override
@@ -48,22 +52,29 @@ public class RecipeItemAdapter extends RecyclerView.Adapter<RecipeItemAdapter.Vi
 
         private TextView name;
         private TextView preparationTime;
+        private RelativeLayout recipeLayout;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.recipeItemName);
             preparationTime = itemView.findViewById(R.id.preparationTime);
+            recipeLayout = itemView.findViewById(R.id.recipeLayout);
 
-            itemView.findViewById(R.id.recipeLayout).setOnClickListener(view ->{
-                Intent recipeDetailsIntent = new Intent(context, RecipeDetailsActivity.class);
-                context.startActivity(recipeDetailsIntent);
-            });
         }
 
         @SuppressLint({"ResourceAsColor", "SetTextI18n"})
-        void bindTo(Recipe recipe){
+        void bindTo(Recipe recipe, String userId, String homeId){
              name.setText(recipe.getName());
-             preparationTime.setText(recipe.getPreparationTime()+"p");
+             preparationTime.setText(recipe.getPreparationTime());
+
+             recipeLayout.setOnClickListener(view ->{
+                 Intent recipeDetailsIntent = new Intent(context, RecipeDetailsActivity.class);
+                 recipeDetailsIntent.putExtra("recipe", (Serializable) recipe);
+                 recipeDetailsIntent.putExtra("userId", userId);
+                 recipeDetailsIntent.putExtra("homeId", homeId);
+                 context.startActivity(recipeDetailsIntent);
+             });
         }
     }
 }

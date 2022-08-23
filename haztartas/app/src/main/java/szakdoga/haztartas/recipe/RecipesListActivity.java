@@ -4,21 +4,33 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import szakdoga.haztartas.R;
-import szakdoga.haztartas.models.Pantry;
+import szakdoga.haztartas.firebaseAuthentication.FirebaseAuthHelper;
+import szakdoga.haztartas.firestore.DbHelper;
 import szakdoga.haztartas.models.Recipe;
-import szakdoga.haztartas.pantry.PantryItemAdapter;
 
 public class RecipesListActivity extends AppCompatActivity {
     private RecyclerView recipesRecylerView;
     private RecipeItemAdapter recipeItemAdapter;
     private List<Recipe> recipes = new ArrayList<>();
     private String category;
+
+    private FirebaseAuthHelper firebaseAuthHelper;
+    private DbHelper dbHelper;
+
+    private String userId;
+    private String homeId;
 
 
     @Override
@@ -27,29 +39,74 @@ public class RecipesListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recipes_list);
 
         category = this.getIntent().getStringExtra("category");
-        getSupportActionBar().setTitle(category);
+        getSupportActionBar().setTitle(category+"ek");
+
+        userId = getIntent().getStringExtra("userId");
+        homeId = getIntent().getStringExtra("homeId");
+
+        firebaseAuthHelper = new FirebaseAuthHelper();
+        dbHelper = new DbHelper();
 
         recipesRecylerView = findViewById(R.id.recipesRecylerView);
         recipesRecylerView.setLayoutManager(new GridLayoutManager(this, 1));
 
-        if (category.equals("Leves")){
-            recipes.add(new Recipe(1, "Paradicsom leves", 30));
-            recipes.add(new Recipe(1, "Hús leves", 90));
-            recipes.add(new Recipe(1, "Tojás leves", 20));
-            recipes.add(new Recipe(1, "Fokhagyma krémleves", 30));
-        } else if (category.equals("Főétel")){
-            recipes.add(new Recipe(1, "Spagetti", 60));
-            recipes.add(new Recipe(1, "Rántott hús", 45));
-            recipes.add(new Recipe(1, "Bakonyi sertésborda", 100));
-            recipes.add(new Recipe(1, "Marhalábszár pörkölt", 180));
-        } else if (category.equals("Desszert")){
-            recipes.add(new Recipe(1, "Tiramisu", 30));
-            recipes.add(new Recipe(1, "Piskóta", 60));
-            recipes.add(new Recipe(1, "Muffin", 45));
-            recipes.add(new Recipe(1, "Mézeskalács", 120));
-        }
-
-        recipeItemAdapter = new RecipeItemAdapter(this, recipes);
+        recipeItemAdapter = new RecipeItemAdapter(this, recipes, userId, homeId);
         recipesRecylerView.setAdapter(recipeItemAdapter);
+    }
+
+    protected void onResume() {
+        super.onResume();
+        firebaseAuthHelper.isAuthUser(userId, this);
+        getRecipes();
+    }
+
+    private void getRecipes(){
+        recipes.clear();
+        dbHelper.getHomeCollection().document(homeId).collection("Recipes").whereEqualTo("category", category).get().addOnSuccessListener(queryDocumentSnapshots -> {
+            for (DocumentSnapshot data: queryDocumentSnapshots){
+                Recipe recipe = new Recipe(
+                        data.getId().toString(),
+                        data.get("name").toString(),
+                        data.get("category").toString(),
+                        data.get("description").toString(),
+                        data.get("ingredients").toString(),
+                        data.get("preparationTime").toString(),
+                        Integer.parseInt(data.get("difficulty").toString()),
+                        Integer.parseInt(data.get("quantity").toString()),
+                        data.get("quantityUnit").toString()
+                );
+                recipes.add(recipe);
+            }
+            recipeItemAdapter.notifyDataSetChanged();
+        });
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.new_recipes_menu, menu);
+
+        //vissza gomb
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.new_recipe:
+                Intent newRecipe = new Intent(this, NewRecipeActivity.class);
+                newRecipe.putExtra("userId", userId);
+                newRecipe.putExtra("homeId", homeId);
+                newRecipe.putExtra("category", category);
+                startActivity(newRecipe);
+                return true;
+
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

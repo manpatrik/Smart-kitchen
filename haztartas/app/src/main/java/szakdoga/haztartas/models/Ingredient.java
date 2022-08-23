@@ -4,21 +4,21 @@ package szakdoga.haztartas.models;
  * Hozzávalók leírására szolgáló modell
  */
 public class Ingredient {
-    private int kamraId;
-    private int quantity; // mennyiség
+    private String quantity; // mennyiség
     private String quantityUnit; // mennyiségi egység (g, l, csomag, db)
+    private String name;
 
-    public Ingredient(int kamraId, int quantity, String quantityUnit) {
-        this.kamraId = kamraId;
+    public Ingredient(String quantity, String quantityUnit, String name) {
         this.quantity = quantity;
         this.quantityUnit = quantityUnit;
+        this.name = name;
     }
 
-    public int getKamraId() {
-        return kamraId;
+    public String getName() {
+        return name;
     }
 
-    public int getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
