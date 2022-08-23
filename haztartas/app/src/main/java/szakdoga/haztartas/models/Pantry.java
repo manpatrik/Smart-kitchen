@@ -25,6 +25,10 @@ public class Pantry {
         this.where = where;
     }
 
+    public String getWhere() {
+        return where;
+    }
+
     public String getId() {
         return id;
     }
