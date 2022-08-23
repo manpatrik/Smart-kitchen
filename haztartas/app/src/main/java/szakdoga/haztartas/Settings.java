@@ -1,14 +1,20 @@
 package szakdoga.haztartas;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -25,6 +31,7 @@ import java.util.Map;
 import szakdoga.haztartas.firebaseAuthentication.FirebaseAuthHelper;
 import szakdoga.haztartas.firestore.DbHelper;
 import szakdoga.haztartas.homesList.HomesListActivity;
+import szakdoga.haztartas.models.Home;
 
 public class Settings extends AppCompatActivity {
 
@@ -126,7 +133,6 @@ public class Settings extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // háztartás törlése
                         dbHelper.getHomeCollection().document(homeId).delete();
-                        firebaseAuthHelper.logOut(this);
                         finish();
                     } else {
                         Toast.makeText(this, "Hibás jelszó!", Toast.LENGTH_LONG).show();
@@ -187,7 +193,6 @@ public class Settings extends AppCompatActivity {
         emailAddressEditText.setText("");
     }
 
-
     private void removeGuest(String email, String userId, String homeId){
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
         builder1.setMessage("Biztosan törölni szeretné\n" + email + "\n-t a háztartásból?");
@@ -247,4 +252,24 @@ public class Settings extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        //vissza gomb
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

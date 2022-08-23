@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Constraints;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -85,7 +87,12 @@ public class HomeActivity extends AppCompatActivity {
         cupboardOpenButton.setVisibility(View.INVISIBLE);
 
         dbHelper.getHomeCollection().document(homeId).get().addOnSuccessListener(quary ->{
-            this.setTitle(quary.get("name").toString());
+            try {
+                this.setTitle(quary.get("name").toString());
+            } catch (Exception e) {
+                finish();
+            }
+
         });
     }
 
