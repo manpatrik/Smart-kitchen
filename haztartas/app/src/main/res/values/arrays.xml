@@ -24,5 +24,12 @@
         <item>marék</item>
         <item></item>
     </string-array>
+    <string-array name="ingredient_quantity_units_short">
+        <item>ml</item>
+        <item>liter</item>
+        <item>g</item>
+        <item>kg</item>
+        <item>darab</item>
+    </string-array>
 
 </resources>
