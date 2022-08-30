@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/logOut"
+        android:title="@string/kijelentkezes" />
+
+    <!--
+public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.sample_logout_menu, menu);
+
+        //vissza gomb
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.logOut:
+                FirebaseAuthHelper firebaseAuthHelper = new FirebaseAuthHelper();
+                firebaseAuthHelper.logOut(this);
+                return true;
+
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    -->
+
+</menu>
