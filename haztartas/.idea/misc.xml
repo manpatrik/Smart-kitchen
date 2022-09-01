@@ -3,12 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/drawable/add.xml" value="0.3295" />
+        <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/drawable/add_circle_outline.xml" value="0.3295" />
+        <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/drawable/edit_icon.xml" value="0.3295" />
+        <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/drawable/help_icon.xml" value="0.3295" />
+        <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/drawable/icons_dessert.xml" value="0.3295" />
         <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/layout/activity_list_pantry.xml" value="0.3482789855072464" />
         <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/layout/activity_login.xml" value="0.3482789855072464" />
+        <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/layout/activity_modify_pantry_item.xml" value="0.18802083333333333" />
         <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/layout/activity_new_pantry_item.xml" value="0.3482789855072464" />
         <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/layout/activity_new_recipe.xml" value="0.3482789855072464" />
         <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/layout/activity_pantry_item.xml" value="0.3482789855072464" />
         <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/layout/activity_register.xml" value="0.3482789855072464" />
+        <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/layout/pantry_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/menu/home_list_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/menu/home_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/menu/new_recipes_menu.xml" value="0.36666666666666664" />

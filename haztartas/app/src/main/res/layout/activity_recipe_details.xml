@@ -36,7 +36,7 @@
             android:scaleType="fitXY"
             android:background="@color/transparent"
             android:onClick="clickRemovePersonButton"
-            android:src="@drawable/remove" />
+            android:src="@drawable/icon_remove" />
 
         <TextView
             android:id="@+id/recipeQuantity"
@@ -62,7 +62,7 @@
             android:scaleType="fitXY"
             android:background="@color/transparent"
             android:onClick="clickAddPersonButton"
-            app:srcCompat="@drawable/add" />
+            app:srcCompat="@drawable/icon_add" />
     </LinearLayout>
 
     <TextView

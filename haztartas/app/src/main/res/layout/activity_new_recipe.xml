@@ -140,7 +140,7 @@
                     android:onClick="removeIngredient"
                     android:scaleType="fitXY"
                     android:layout_marginTop="10dp"
-                    app:srcCompat="@drawable/remove" />
+                    app:srcCompat="@drawable/icon_remove" />
 
             </LinearLayout>
 
@@ -155,7 +155,7 @@
             android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/newRecipeIngredientsLayout"
-            app:srcCompat="@drawable/add" />
+            app:srcCompat="@drawable/icon_add" />
 
         <TextView
             android:id="@+id/textView6"

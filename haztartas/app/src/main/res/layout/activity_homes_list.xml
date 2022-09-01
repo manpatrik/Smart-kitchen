@@ -57,7 +57,7 @@
                 android:layout_marginEnd="20dp"
                 android:background="#00FFFFFF"
                 android:onClick="newHome"
-                app:srcCompat="@drawable/add_circle_outline" />
+                app:srcCompat="@drawable/icon_add_circle_outline" />
 
         </RelativeLayout>
 
