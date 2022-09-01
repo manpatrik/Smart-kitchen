@@ -2,19 +2,14 @@ package szakdoga.haztartas.recipe;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
-import android.graphics.drawable.GradientDrawable;
-import android.icu.text.MeasureFormat;
 import android.os.Bundle;
 import android.text.InputType;
-import android.text.Layout;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -108,7 +103,7 @@ public class NewRecipeActivity extends AppCompatActivity {
         newRow.addView(name);
 
         ImageButton removeIngredient = new ImageButton(this);
-        removeIngredient.setImageResource(R.drawable.remove);
+        removeIngredient.setImageResource(R.drawable.icon_remove);
         removeIngredient.setScaleType(ImageView.ScaleType.FIT_XY);
         removeIngredient.setBackgroundResource(R.color.transparent);
         removeIngredient.setOnClickListener(new View.OnClickListener() {
