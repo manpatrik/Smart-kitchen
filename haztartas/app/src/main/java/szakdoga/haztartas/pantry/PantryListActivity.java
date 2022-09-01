@@ -185,6 +185,7 @@ public class PantryListActivity extends AppCompatActivity {
                         DbHelper dbHelper = new DbHelper();
                         dbHelper.getHomeCollection().document(homeId).collection("Pantry").document(pantry.getId()).update("quantity", Double.parseDouble(quantityEditText.getText().toString()));
                         Toast.makeText(PantryListActivity.this, "Sikeres Mentés", Toast.LENGTH_SHORT).show();
+                        PantryListActivity.this.onResume();
                     }
                 });
 
