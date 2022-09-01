@@ -44,16 +44,16 @@ public class RegisterActivity extends AppCompatActivity {
         String passwordAgain = passwordAgainEditText.getText().toString();
 
         if (password.length()<8){
-            Toast.makeText(this, "A jelszónak legalább 8 hosszúnak kell lennie!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "A jelszónak legalább 8 hosszúnak kell lennie!", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!password.equals(passwordAgain)){
-            Toast.makeText(this, "A két jelszó nem egyezik", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "A két jelszó nem egyezik", Toast.LENGTH_SHORT).show();
             return;
         }
         if (!email.contains("@") || !email.contains(".") || email.length()<4){
-            Toast.makeText(this, "Helytelen email cím", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Helytelen email cím", Toast.LENGTH_SHORT).show();
             return;
         }
 

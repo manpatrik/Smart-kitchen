@@ -127,11 +127,11 @@ public class Settings extends AppCompatActivity {
                         dbHelper.getHomeCollection().document(homeId).delete();
                         finish();
                     } else {
-                        Toast.makeText(this, "Hibás jelszó!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Hibás jelszó!", Toast.LENGTH_SHORT).show();
                     }
                 });
             } else {
-                Toast.makeText(this, "Nem írta be a jelszavát!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Nem írta be a jelszavát!", Toast.LENGTH_SHORT).show();
             }
         } else {
             deleteHousehold = true;
@@ -172,14 +172,14 @@ public class Settings extends AppCompatActivity {
                         member.put("homeId", homeId);
                         dbHelper.getHomeCollection().document(homeId).collection("Guests").document(data.get("userId").toString()).set(member);
 
-                        Toast.makeText(this, "Sikeres hozzáadás!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Sikeres hozzáadás!", Toast.LENGTH_SHORT).show();
                         householdGuestsList();
                         return;
                     }
-                    Toast.makeText(this, "Nincs ilyen felhasználó!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Nincs ilyen felhasználó!", Toast.LENGTH_SHORT).show();
                 });
             }else{
-                Toast.makeText(this, guestEmail+" már a háztartás tagja!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, guestEmail+" már a háztartás tagja!", Toast.LENGTH_SHORT).show();
             }
         });
         emailAddressEditText.setText("");

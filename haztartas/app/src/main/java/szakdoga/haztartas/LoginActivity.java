@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         String password = passwordEditText.getText().toString();
         if (email.length() != 0) {
             if (!email.contains("@") || !email.contains(".") || email.length() < 2 || password.length() < 8) {
-                Toast.makeText(this, "Helytelen email cím vagy jelszó!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Helytelen email cím vagy jelszó!", Toast.LENGTH_SHORT).show();
                 return;
             }
 

@@ -218,10 +218,10 @@ public class RecipeModifyActivity extends AppCompatActivity {
                     "quantityUnit", quantityUnitSpinner.getSelectedItem().toString()
             );
 
-            Toast.makeText(this, "Sikeres módosítás!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Sikeres módosítás!", Toast.LENGTH_SHORT).show();
             this.finish();
         } else {
-            Toast.makeText(this, error, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
         }
     }
 

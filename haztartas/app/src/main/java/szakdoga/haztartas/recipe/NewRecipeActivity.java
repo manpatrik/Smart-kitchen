@@ -158,10 +158,10 @@ public class NewRecipeActivity extends AppCompatActivity {
             recipe.put("quantityUnit", quantityUnitSpinner.getSelectedItem().toString());
 
             dbHelper.getHomeCollection().document(homeId).collection("Recipes").add(recipe);
-            Toast.makeText(this, "Sikeres mentés!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Sikeres mentés!", Toast.LENGTH_SHORT).show();
             this.finish();
         } else {
-            Toast.makeText(this, error, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
         }
     }
 
