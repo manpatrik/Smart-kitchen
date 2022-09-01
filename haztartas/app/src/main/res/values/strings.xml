@@ -41,4 +41,5 @@
     <string name="_123456789">123456789</string>
     <string name="beolvas">Vonalkód beolvasás</string>
     <string name="vonalkodok">Vonalkódok:</string>
+    <string name="hozzavalo_modositasa">Hozzávaló módosítása</string>
 </resources>

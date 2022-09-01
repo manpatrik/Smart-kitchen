@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.TypedValue;
@@ -18,9 +17,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import szakdoga.haztartas.R;
 import szakdoga.haztartas.firebaseAuthentication.FirebaseAuthHelper;
@@ -74,6 +70,7 @@ public class RecipeModifyActivity extends AppCompatActivity {
                 categorySpinner.setSelection(2);
                 break;
         }
+
         switch (recipe.getQuantityUnit()){
             case "fő":
                 break;
@@ -116,7 +113,7 @@ public class RecipeModifyActivity extends AppCompatActivity {
             newRow.addView(name);
 
             ImageButton removeIngredient = new ImageButton(this);
-            removeIngredient.setImageResource(R.drawable.remove);
+            removeIngredient.setImageResource(R.drawable.icon_remove);
             removeIngredient.setScaleType(ImageView.ScaleType.FIT_XY);
             removeIngredient.setBackgroundResource(R.color.transparent);
             removeIngredient.setOnClickListener(new View.OnClickListener() {
@@ -164,7 +161,7 @@ public class RecipeModifyActivity extends AppCompatActivity {
         newRow.addView(name);
 
         ImageButton removeIngredient = new ImageButton(this);
-        removeIngredient.setImageResource(R.drawable.remove);
+        removeIngredient.setImageResource(R.drawable.icon_remove);
         removeIngredient.setScaleType(ImageView.ScaleType.FIT_XY);
         removeIngredient.setBackgroundResource(R.color.transparent);
         removeIngredient.setOnClickListener(new View.OnClickListener() {

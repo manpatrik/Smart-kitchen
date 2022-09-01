@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="szakdoga.haztartas">
 
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Haztartas">
+        <activity
+            android:name=".pantry.ModifyPantryItem"
+            android:exported="false" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,22 +22,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Settings"/>
+        <activity android:name=".Settings" />
         <activity android:name=".AddOrRemoveFood" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".homesList.HomesListActivity"/>
-        <activity android:name=".RegisterActivity"/>
-        <activity android:name=".recipe.RecipeModifyActivity"/>
-        <activity android:name=".recipe.NewRecipeActivity"/>
+        <activity android:name=".homesList.HomesListActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".recipe.RecipeModifyActivity" />
+        <activity android:name=".recipe.NewRecipeActivity" />
         <activity android:name=".recipe.RecipeDetailsActivity" />
         <activity android:name=".recipe.RecipeCategoriesActivity" />
         <activity android:name=".recipe.RecipesListActivity" />
         <activity android:name=".pantry.PantryListActivity" />
-        <activity android:name=".pantry.NewPantryItem"/>
-        <activity android:name=".pantry.CaptureAct"
+        <activity android:name=".pantry.NewPantryItem" />
+        <activity
+            android:name=".pantry.CaptureAct"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"
-            android:theme="@style/zxing_CaptureTheme"/>
+            android:theme="@style/zxing_CaptureTheme" />
     </application>
 
 </manifest>

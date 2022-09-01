@@ -3,22 +3,16 @@ package szakdoga.haztartas;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.app.Activity;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,8 +24,6 @@ import java.util.Map;
 
 import szakdoga.haztartas.firebaseAuthentication.FirebaseAuthHelper;
 import szakdoga.haztartas.firestore.DbHelper;
-import szakdoga.haztartas.homesList.HomesListActivity;
-import szakdoga.haztartas.models.Home;
 
 public class Settings extends AppCompatActivity {
 
@@ -235,7 +227,7 @@ public class Settings extends AppCompatActivity {
                 row.addView(email);
                 if (owner){
                     ImageButton remove = new ImageButton(this);
-                    remove.setImageResource(R.drawable.remove);
+                    remove.setImageResource(R.drawable.icon_remove);
                     remove.setBackgroundResource(R.color.transparent);
 
                     remove.setOnClickListener(new View.OnClickListener() {

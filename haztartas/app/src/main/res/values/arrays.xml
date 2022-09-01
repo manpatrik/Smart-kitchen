@@ -24,12 +24,20 @@
         <item>marék</item>
         <item></item>
     </string-array>
+
     <string-array name="ingredient_quantity_units_short">
         <item>ml</item>
         <item>liter</item>
         <item>g</item>
         <item>kg</item>
         <item>darab</item>
+    </string-array>
+
+    <string-array name="pantry_categories">
+        <item>Hűtő</item>
+        <item>Fagyasztó</item>
+        <item>Szekrény</item>
+        <item>Zöldségek/gyümülcsök</item>
     </string-array>
 
 </resources>

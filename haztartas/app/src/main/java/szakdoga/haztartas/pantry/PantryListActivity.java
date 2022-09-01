@@ -51,7 +51,7 @@ public class PantryListActivity extends AppCompatActivity {
         foodsRecylerView = findViewById(R.id.foodsRecylerView);
         foodsRecylerView.setLayoutManager(new GridLayoutManager(this, 1));
 
-        pantryItemAdapter = new PantryItemAdapter(this, pantries, homeId);
+        pantryItemAdapter = new PantryItemAdapter(this, pantries, homeId, userId);
         foodsRecylerView.setAdapter(pantryItemAdapter);
     }
 
@@ -72,7 +72,8 @@ public class PantryListActivity extends AppCompatActivity {
                         data.get("name").toString(),
                         Double.parseDouble(data.get("quantity").toString()),
                         data.get("quantityUnit").toString(),
-                        data.get("where").toString()
+                        data.get("where").toString(),
+                        (List<String>) data.get("barcodes")
                 );
                 pantries.add(pantry);
             }
@@ -96,6 +97,7 @@ public class PantryListActivity extends AppCompatActivity {
                 Intent newPantryItem = new Intent(this, NewPantryItem.class);
                 newPantryItem.putExtra("userId", userId);
                 newPantryItem.putExtra("homeId", homeId);
+                newPantryItem.putExtra("where", whereCategory);
                 startActivity(newPantryItem);
                 return true;
 

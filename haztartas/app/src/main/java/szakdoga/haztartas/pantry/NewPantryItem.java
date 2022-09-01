@@ -7,6 +7,7 @@
 package szakdoga.haztartas.pantry;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -27,27 +28,32 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import szakdoga.haztartas.R;
 import szakdoga.haztartas.firebaseAuthentication.FirebaseAuthHelper;
 import szakdoga.haztartas.firestore.DbHelper;
+import szakdoga.haztartas.models.Pantry;
 
 public class NewPantryItem extends AppCompatActivity {
 
     EditText name;
     EditText quantity;
     Spinner quantityUnit;
+    Spinner whereSpinner;
     LinearLayout barcodesLayout;
 
     private String userId;
     private String homeId;
 
     private FirebaseAuthHelper firebaseAuthHelper;
-
-
-
+    private DbHelper dbHelper;
 
 
     @Override
@@ -59,11 +65,26 @@ public class NewPantryItem extends AppCompatActivity {
         userId = getIntent().getStringExtra("userId");
         homeId = getIntent().getStringExtra("homeId");
         firebaseAuthHelper = new FirebaseAuthHelper();
+        dbHelper = new DbHelper();
 
         name = findViewById(R.id.newPantryItemName);
         quantity = findViewById(R.id.newPantryItemQuantity);
         quantityUnit = findViewById(R.id.newPantryItemQuantityUnitSpinner);
         barcodesLayout = findViewById(R.id.newPantryItemBarcodeslinearLayout);
+        whereSpinner = findViewById(R.id.newPantryItemWhereSpinner);
+
+        setWhereSpinner(getIntent().getStringExtra("where"));
+    }
+
+    private void setWhereSpinner(String where) {
+        final String[] quantityUnits = getResources().getStringArray(R.array.pantry_categories);
+        for (int i = 0; i < quantityUnits.length; i++){
+            System.out.println(where +" == "+quantityUnits[i]);
+            if(quantityUnits[i].equals(where)){
+                whereSpinner.setSelection(i);
+                break;
+            }
+        }
     }
 
     @Override
@@ -82,32 +103,75 @@ public class NewPantryItem extends AppCompatActivity {
                 }
             }
 
-            LinearLayout row = new LinearLayout(this);
+            dbHelper.getHomeCollection().document(homeId).collection("Pantry").whereArrayContains("barcodes", result.getContents()).get().addOnSuccessListener(queryDocumentSnapshots -> {
+                for (DocumentSnapshot data : queryDocumentSnapshots){
+                    System.out.println(data.get("name"));
+                }
+                if (queryDocumentSnapshots.size() > 0){
+                    DocumentSnapshot data = queryDocumentSnapshots.getDocuments().get(0);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle("A vonalkód már szerepel az adatbázisban");
+                    builder.setMessage("Szeretné módosítani ezt a hozzávalót: "+ data.get("name") +"?");
 
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            layoutParams.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics());
-            row.setLayoutParams(layoutParams);
+                    builder.setPositiveButton(data.get("name") + " módosítása", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                            Pantry pantry = new Pantry(
+                                    data.getId(),
+                                    data.get("name").toString(),
+                                    Double.parseDouble(data.get("quantity").toString()),
+                                    data.get("quantityUnit").toString(),
+                                    data.get("where").toString(),
+                                    (List<String>) data.get("barcodes")
+                            );
+                            Intent intent = new Intent(NewPantryItem.this, ModifyPantryItem.class);
+                            intent.putExtra("pantry", (Serializable) pantry);
+                            intent.putExtra("userId", userId);
+                            intent.putExtra("homeId", homeId);
+                            startActivity(intent);
+                        }
+                    });
 
-            TextView textView = new TextView(this);
-            textView.setText(result.getContents());
-            row.addView(textView);
+                    builder.setNegativeButton("Vissza", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    });
 
-            ImageButton imageButton = new ImageButton(this);
-            imageButton.setImageResource(R.drawable.remove);
-            imageButton.setScaleType(ImageView.ScaleType.FIT_XY);
-            imageButton.setBackgroundResource(R.color.transparent);
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
 
-            imageButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    barcodesLayout.removeView((View) view.getParent());
+                } else {
+                    LinearLayout row = new LinearLayout(this);
+
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    layoutParams.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics());
+                    row.setLayoutParams(layoutParams);
+
+                    TextView textView = new TextView(this);
+                    textView.setText(result.getContents());
+                    row.addView(textView);
+
+                    ImageButton imageButton = new ImageButton(this);
+                    imageButton.setImageResource(R.drawable.icon_remove);
+                    imageButton.setScaleType(ImageView.ScaleType.FIT_XY);
+                    imageButton.setBackgroundResource(R.color.transparent);
+
+                    imageButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            barcodesLayout.removeView((View) view.getParent());
+                        }
+                    });
+
+                    row.addView(imageButton);
+
+                    row.setGravity(Gravity.CENTER_VERTICAL);
+                    barcodesLayout.addView(row);
                 }
             });
-
-            row.addView(imageButton);
-
-            row.setGravity(Gravity.CENTER_VERTICAL);
-            barcodesLayout.addView(row);
         }
     });
 
@@ -128,8 +192,23 @@ public class NewPantryItem extends AppCompatActivity {
         } else if(quantity.getText().length() == 0){
             error = "Nem adott meg mennyiséget!";
         } else {
-            DbHelper dbHelper = new DbHelper();
-            //dbHelper.getHomeCollection().document(homeId).collection("Pantry").
+            List<String> barcodes = new ArrayList<>();
+            for (int i = 0; i < barcodesLayout.getChildCount(); i++){
+                barcodes.add(((TextView)((LinearLayout)barcodesLayout.getChildAt(i)).getChildAt(0)).getText().toString());
+            }
+            Pantry pantry = new Pantry(
+                    null,
+                    name.getText().toString(),
+                    Double.parseDouble(quantity.getText().toString()),
+                    quantityUnit.getSelectedItem().toString(),
+                    whereSpinner.getSelectedItem().toString(),
+                    barcodes
+            );
+            dbHelper.getHomeCollection().document(homeId).collection("Pantry").add(pantry).addOnSuccessListener(result -> {
+                dbHelper.getHomeCollection().document(homeId).collection("Pantry").document(result.getId()).update("id", result.getId());
+                finish();
+                Toast.makeText(this, "Sikeres mentés!", Toast.LENGTH_SHORT).show();
+            });
         }
     }
 

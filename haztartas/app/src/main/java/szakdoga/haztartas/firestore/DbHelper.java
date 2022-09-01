@@ -11,6 +11,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,13 +71,15 @@ public class DbHelper implements DbHelperInterface {
                 homeId = task.getResult().getId();
 
                 List<Pantry> pantries = new ArrayList<>();
-                pantries.add(new Pantry("tojás", 8, "db", "Hűtő"));
-                pantries.add(new Pantry("liszt", 1.5, "kg", "Szekrény"));
-                pantries.add(new Pantry("borsó", 1, "kg", "Fagyasztó"));
-                pantries.add(new Pantry("répa", 4, "db", "Zöldségek/gyümülcsök"));
-                pantries.add(new Pantry("fehér répa", 3, "db", "Zöldségek/gyümülcsök"));
+                pantries.add(new Pantry("tojás", 8, "db", "Hűtő", Arrays.asList()));
+                pantries.add(new Pantry("liszt", 1.5, "kg", "Szekrény",Arrays.asList("4008400395029")));
+                pantries.add(new Pantry("borsó", 1, "kg", "Fagyasztó",Arrays.asList()));
+                pantries.add(new Pantry("répa", 4, "db", "Zöldségek/gyümülcsök",Arrays.asList()));
+                pantries.add(new Pantry("fehér répa", 3, "db", "Zöldségek/gyümülcsök",Arrays.asList()));
                 for(Pantry pantry : pantries){
-                    homeCollection.document(homeId).collection("Pantry").add(pantry);
+                    homeCollection.document(homeId).collection("Pantry").add(pantry).addOnSuccessListener(documentReference -> {
+                        homeCollection.document(homeId).collection("Pantry").document(documentReference.getId()).update("id", documentReference.getId());
+                    });
                 }
 
                 Map<String, Object> recipe = new HashMap<>();

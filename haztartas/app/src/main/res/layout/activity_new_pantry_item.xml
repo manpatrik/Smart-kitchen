@@ -33,6 +33,15 @@
             android:inputType="textPersonName" />
     </LinearLayout>
 
+    <Spinner
+        android:id="@+id/newPantryItemWhereSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:entries="@array/pantry_categories"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newPantryItemNamelinearLayout" />
+
     <LinearLayout
         android:id="@+id/newPantryItemQuantitylinearLayout"
         android:layout_width="wrap_content"
@@ -41,7 +50,7 @@
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newPantryItemNamelinearLayout">
+        app:layout_constraintTop_toBottomOf="@+id/newPantryItemWhereSpinner">
 
         <TextView
             android:id="@+id/newPantryItemQuantityTextView"

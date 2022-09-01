@@ -7,12 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.List;
 
 import szakdoga.haztartas.R;
@@ -24,22 +26,24 @@ public class PantryItemAdapter extends RecyclerView.Adapter<PantryItemAdapter.Vi
     private Context context;
     private List<Pantry> pantries;
     String homeId;
+    String userId;
 
-    PantryItemAdapter(Context context, List<Pantry> pantries, String homeId){
+    PantryItemAdapter(Context context, List<Pantry> pantries, String homeId, String userId){
         this.context = context;
         this.pantries = pantries;
         this.homeId = homeId;
+        this.userId = userId;
     }
 
     @Override
     public PantryItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(context)
-                .inflate(R.layout.activity_pantry_item, parent, false));
+                .inflate(R.layout.pantry_item, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bindTo(pantries.get(position), homeId);
+        holder.bindTo(pantries.get(position), homeId, userId);
     }
 
     @Override
@@ -52,6 +56,7 @@ public class PantryItemAdapter extends RecyclerView.Adapter<PantryItemAdapter.Vi
         private TextView quantity;
         private TextView quantityUnit;
         private ImageButton deleteButton;
+        private ImageButton modifyButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -59,10 +64,11 @@ public class PantryItemAdapter extends RecyclerView.Adapter<PantryItemAdapter.Vi
             quantity = itemView.findViewById(R.id.quantity);
             quantityUnit = itemView.findViewById(R.id.quantityUnit);
             deleteButton = itemView.findViewById(R.id.deleteButton);
+            modifyButton = itemView.findViewById(R.id.modifyButton);
         }
 
         @SuppressLint({"ResourceAsColor", "SetTextI18n"})
-        void bindTo(Pantry pantry, String homeId){
+        void bindTo(Pantry pantry, String homeId, String userId){
             name.setText(pantry.getName());
             String quantityInString = Double.toString(pantry.getQuantity());
             if (quantityInString.charAt(quantityInString.length()-1)=='0'){
@@ -70,6 +76,18 @@ public class PantryItemAdapter extends RecyclerView.Adapter<PantryItemAdapter.Vi
             }
             quantity.setText(quantityInString);
             quantityUnit.setText(pantry.getQuantityUnit());
+
+            modifyButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent modifyIntent = new Intent(view.getContext(), ModifyPantryItem.class);
+                    modifyIntent.putExtra("pantry", (Serializable) pantry);
+                    modifyIntent.putExtra("userId", userId);
+                    modifyIntent.putExtra("homeId", homeId);
+                    view.getContext().startActivity(modifyIntent);
+                }
+            });
+
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
