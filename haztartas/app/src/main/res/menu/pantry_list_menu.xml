@@ -3,6 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/barcodeScanner"
+        android:icon="@drawable/icon_barcode_scanner"
+        android:title="@string/vonalkod_olvasas"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/newPantryItem"
         android:icon="@drawable/icon_add_circle_outline"
         android:title="@string/uj_hozzavalo"
