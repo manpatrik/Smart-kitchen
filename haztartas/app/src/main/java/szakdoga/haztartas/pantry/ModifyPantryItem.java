@@ -260,6 +260,31 @@ public class ModifyPantryItem extends AppCompatActivity {
         }
     }
 
+    public void deleteFromDatabase(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Biztosan törölni szeretné?");
+
+        builder.setNegativeButton("Mégsem", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+
+        builder.setPositiveButton("Törlés", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dbHelper.getHomeCollection().document(homeId).collection("Pantry").document(pantry.getId()).delete();
+                Toast.makeText(ModifyPantryItem.this, "Sikeres törlés!", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.sample_logout_menu, menu);

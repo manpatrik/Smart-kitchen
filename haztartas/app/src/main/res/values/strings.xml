@@ -43,4 +43,5 @@
     <string name="beolvas">Vonalkód beolvasás</string>
     <string name="vonalkodok">Vonalkódok:</string>
     <string name="hozzavalo_modositasa">Hozzávaló módosítása</string>
+    <string name="torles_az_adatbazisbol">Törlés az adatbázisból</string>
 </resources>
