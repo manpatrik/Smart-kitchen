@@ -43,7 +43,7 @@
                 android:layout_height="40dp"
                 android:background="@color/transparent"
                 android:onClick="enableHouseholdNameEdit"
-                app:srcCompat="@drawable/edit_icon" />
+                app:srcCompat="@drawable/icon_edit" />
 
         </LinearLayout>
 
@@ -202,7 +202,7 @@
                 android:visibility="gone"
                 android:background="@color/transparent"
                 android:onClick="addHouseholdMember"
-                app:srcCompat="@drawable/add" />
+                app:srcCompat="@drawable/icon_add" />
 
         </LinearLayout>
 
