@@ -210,6 +210,7 @@ public class PantryItemAdapter extends RecyclerView.Adapter<PantryItemAdapter.Vi
                                     // törlés az adatbázisból
                                     DbHelper dbHelper = new DbHelper();
                                     dbHelper.getHomeCollection().document(homeId).collection("Pantry").document(pantry.getId()).delete();
+                                    ((PantryListActivity) view.getContext()).onResume();
                                 }
                             });
 
