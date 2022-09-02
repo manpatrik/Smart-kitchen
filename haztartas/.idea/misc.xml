@@ -3,10 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3145" />
         <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/drawable/add.xml" value="0.3295" />
         <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/drawable/add_circle_outline.xml" value="0.3295" />
         <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/drawable/edit_icon.xml" value="0.3295" />
         <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/drawable/help_icon.xml" value="0.3295" />
+        <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3145" />
         <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/drawable/icons_dessert.xml" value="0.3295" />
         <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/layout/activity_add_or_remove_food.xml" value="0.36666666666666664" />
         <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/layout/activity_list_pantry.xml" value="0.3482789855072464" />
@@ -24,6 +26,8 @@
         <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/menu/pantry_list_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/menu/recipe_details_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/menu/sample_logout_menu.xml" value="0.365625" />
+        <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3145" />
+        <entry key="..\:/Egyetem/Smart-kitchen/haztartas/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3145" />
         <entry key="..\:/Egyetem/Szakdoga/haztartas/app/src/main/res/layout/activity_add_or_remove_food.xml" value="0.18614130434782608" />
         <entry key="..\:/Egyetem/Szakdoga/haztartas/app/src/main/res/layout/activity_home.xml" value="0.264" />
         <entry key="..\:/Egyetem/Szakdoga/haztartas/app/src/main/res/layout/activity_home_item.xml" value="0.264" />

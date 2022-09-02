@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Háztartás</string>
+    <string name="app_name">Smart kitchen</string>
     <string name="soup">Leves</string>
     <string name="mainFood">Főétel</string>
     <string name="dessert">Desszert</string>
