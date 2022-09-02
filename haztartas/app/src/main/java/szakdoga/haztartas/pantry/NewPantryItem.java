@@ -205,49 +205,49 @@ public class NewPantryItem extends AppCompatActivity {
                     barcodes
             );
             dbHelper.getHomeCollection().document(homeId).collection("Pantry").whereEqualTo("name", name.getText().toString()).get().addOnSuccessListener(queryDocumentSnapshots -> {
-                if (queryDocumentSnapshots.getDocuments().size() != 0 && queryDocumentSnapshots.getDocuments().get(0).get("where").equals(whereSpinner.getSelectedItem().toString())){
-                    DocumentSnapshot data = queryDocumentSnapshots.getDocuments().get(0);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setTitle("Létező név!");
-                    builder.setMessage("Be szeretné tölteni a(z) " + data.get("name") + " adatait?");
+                for (DocumentSnapshot data :queryDocumentSnapshots) {
+                    if (data.get("where").equals(whereSpinner.getSelectedItem().toString())) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                        builder.setTitle("Létező név!");
+                        builder.setMessage("Be szeretné tölteni a(z) " + data.get("name") + " adatait?");
 
-                    builder.setNegativeButton("Nem", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            name.setText("");
-                            dialogInterface.cancel();
-                        }
-                    });
-                    builder.setPositiveButton("Igen", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            finish();
-                            Pantry pantry = new Pantry(
-                                    data.getId(),
-                                    data.get("name").toString(),
-                                    Double.parseDouble(data.get("quantity").toString()),
-                                    data.get("quantityUnit").toString(),
-                                    data.get("where").toString(),
-                                    (List<String>) data.get("barcodes")
-                            );
-                            Intent intent = new Intent(NewPantryItem.this, ModifyPantryItem.class);
-                            intent.putExtra("pantry", (Serializable) pantry);
-                            intent.putExtra("userId", userId);
-                            intent.putExtra("homeId", homeId);
-                            startActivity(intent);
-                        }
-                    });
+                        builder.setNegativeButton("Nem", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                name.setText("");
+                                dialogInterface.cancel();
+                            }
+                        });
+                        builder.setPositiveButton("Igen", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                finish();
+                                Pantry pantry = new Pantry(
+                                        data.getId(),
+                                        data.get("name").toString(),
+                                        Double.parseDouble(data.get("quantity").toString()),
+                                        data.get("quantityUnit").toString(),
+                                        data.get("where").toString(),
+                                        (List<String>) data.get("barcodes")
+                                );
+                                Intent intent = new Intent(NewPantryItem.this, ModifyPantryItem.class);
+                                intent.putExtra("pantry", (Serializable) pantry);
+                                intent.putExtra("userId", userId);
+                                intent.putExtra("homeId", homeId);
+                                startActivity(intent);
+                            }
+                        });
 
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
-
-                }else{
-                    dbHelper.getHomeCollection().document(homeId).collection("Pantry").add(pantry).addOnSuccessListener(result -> {
-                        dbHelper.getHomeCollection().document(homeId).collection("Pantry").document(result.getId()).update("id", result.getId());
-                        finish();
-                        Toast.makeText(this, "Sikeres mentés!", Toast.LENGTH_SHORT).show();
-                    });
+                        AlertDialog alertDialog = builder.create();
+                        alertDialog.show();
+                        return;
+                    }
                 }
+                dbHelper.getHomeCollection().document(homeId).collection("Pantry").add(pantry).addOnSuccessListener(result -> {
+                    dbHelper.getHomeCollection().document(homeId).collection("Pantry").document(result.getId()).update("id", result.getId());
+                    finish();
+                    Toast.makeText(this, "Sikeres mentés!", Toast.LENGTH_SHORT).show();
+                });
             });
         }
         if (error != null){

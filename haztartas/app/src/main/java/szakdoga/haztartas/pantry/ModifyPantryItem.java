@@ -239,20 +239,24 @@ public class ModifyPantryItem extends AppCompatActivity {
                 barcodes.add(((TextView)((LinearLayout)barcodesLayout.getChildAt(i)).getChildAt(0)).getText().toString());
             }
             dbHelper.getHomeCollection().document(homeId).collection("Pantry").whereEqualTo("name", name.getText().toString()).get().addOnSuccessListener(queryDocumentSnapshots -> {
-                if (queryDocumentSnapshots.getDocuments().size() != 0 && queryDocumentSnapshots.getDocuments().get(0).get("where").equals(whereSpinner.getSelectedItem().toString())){
-                    Toast.makeText(this, "Már létező név!", Toast.LENGTH_SHORT).show();
-                }else{
-                    dbHelper.getHomeCollection().document(homeId).collection("Pantry").document(this.pantry.getId()).update(
-                            "name", name.getText().toString(),
-                            "quantity", Double.parseDouble(quantity.getText().toString()),
-                            "quantityUnit", quantityUnitSpinner.getSelectedItem().toString(),
-                            "where", whereSpinner.getSelectedItem().toString(),
-                            "barcodes", barcodes
-                    ).addOnSuccessListener(result -> {
-                        finish();
-                        Toast.makeText(this, "Sikeres mentés!", Toast.LENGTH_SHORT).show();
-                    });
+                for (DocumentSnapshot data :queryDocumentSnapshots) {
+                    if (data.get("where").equals(whereSpinner.getSelectedItem().toString()) && !data.getId().equals(pantry.getId())) {
+                        Toast.makeText(this, "Már létező név!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
+
+                dbHelper.getHomeCollection().document(homeId).collection("Pantry").document(this.pantry.getId()).update(
+                        "name", name.getText().toString(),
+                        "quantity", Double.parseDouble(quantity.getText().toString()),
+                        "quantityUnit", quantityUnitSpinner.getSelectedItem().toString(),
+                        "where", whereSpinner.getSelectedItem().toString(),
+                        "barcodes", barcodes
+                ).addOnSuccessListener(result -> {
+                    finish();
+                    Toast.makeText(this, "Sikeres mentés!", Toast.LENGTH_SHORT).show();
+                });
+
             });
         }
         if (error != null){
