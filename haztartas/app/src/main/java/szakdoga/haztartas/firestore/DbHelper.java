@@ -21,12 +21,10 @@ import szakdoga.haztartas.models.Pantry;
 
 public class DbHelper implements DbHelperInterface {
     private CollectionReference homeCollection;
-    private Query homeQueryGuest;
     private CollectionReference usersCollection;
 
     public DbHelper(){
         homeCollection = FirebaseFirestore.getInstance().collection("Homes");
-        homeQueryGuest = FirebaseFirestore.getInstance().collectionGroup("Guests");
         usersCollection = FirebaseFirestore.getInstance().collection("Users");
     }
 
@@ -36,10 +34,6 @@ public class DbHelper implements DbHelperInterface {
 
     public CollectionReference getHomeCollection() {
         return homeCollection;
-    }
-
-    public Query getHomeQueryGuest(){
-        return homeQueryGuest;
     }
 
 
@@ -61,10 +55,15 @@ public class DbHelper implements DbHelperInterface {
      */
     @Override
     public void newHome(String userId, String homeName, String email, Activity activity) {
-        Map<String, Object> home = new HashMap<>();
-        home.put("name", homeName);
-        home.put("owner", userId);
-        home.put("ownerEmail", email);
+        Home home = new Home(
+                null,
+                homeName,
+                email,
+                userId,
+                Arrays.asList(),
+                Arrays.asList()
+        );
+
         homeCollection.add(home).addOnCompleteListener(task -> {
             if (task.isSuccessful()){
                 String homeId;

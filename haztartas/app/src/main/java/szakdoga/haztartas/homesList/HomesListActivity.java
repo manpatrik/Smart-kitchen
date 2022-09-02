@@ -89,15 +89,11 @@ public class HomesListActivity extends AppCompatActivity {
             }
 
             // vendégek
-            FirebaseFirestore.getInstance().collectionGroup("Guests").get().addOnSuccessListener(queryDocumentSnapshots2 ->{
+            dbHelper.getHomeCollection().whereArrayContains("guestIds", userId).get().addOnSuccessListener(queryDocumentSnapshots2 ->{
                 for (DocumentSnapshot data: queryDocumentSnapshots2) {
-                    if (userId.equals(data.get("userId"))) {
-                        dbHelper.getHomeCollection().document(data.get("homeId").toString()).get().addOnSuccessListener(queryData -> {
-                            Home home = new Home(queryData.getId().toString(), queryData.get("name").toString());
-                            homes.add(home);
-                            homeItemAdapter.notifyDataSetChanged();
-                        });
-                    }
+                    Home home = new Home(data.getId(), data.get("name").toString());
+                    homes.add(home);
+                    homeItemAdapter.notifyDataSetChanged();
                 }
             });
         });

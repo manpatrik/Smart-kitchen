@@ -20,10 +20,12 @@ import android.widget.Toast;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import szakdoga.haztartas.firebaseAuthentication.FirebaseAuthHelper;
 import szakdoga.haztartas.firestore.DbHelper;
+import szakdoga.haztartas.models.Home;
 
 public class Settings extends AppCompatActivity {
 
@@ -32,7 +34,7 @@ public class Settings extends AppCompatActivity {
 
     private String userId;
     private String homeId;
-    private String ownerEmail;
+    private Home home;
     private boolean owner = true;
 
     private boolean nameIsChanged = false;
@@ -77,22 +79,28 @@ public class Settings extends AppCompatActivity {
         userId = getIntent().getStringExtra("userId");
         homeId = getIntent().getStringExtra("homeId");
 
-        dbHelper.getHomeCollection().document(homeId).get().addOnSuccessListener(quary ->{
-            ownerEmail = quary.get("ownerEmail").toString();
-            householdNameEditText.setText(quary.get("name").toString());
-            ownerText.setText(ownerEmail);
-        });
+        dbHelper.getHomeCollection().document(homeId).get().addOnSuccessListener(data ->{
+            home = new Home(
+                    data.getId(),
+                    data.get("name").toString(),
+                    data.get("ownerEmail").toString(),
+                    data.get("owner").toString(),
+                    (List<String>) data.get("guestIds"),
+                    (List<String>) data.get("guestEmails")
+            );
 
-        dbHelper.getHomeCollection().document(homeId).get().addOnSuccessListener(query ->{
-            if(!query.get("owner").toString().equals(userId)){
+            householdNameEditText.setText(home.getName());
+            ownerText.setText(home.getOwnerEmail());
+
+            if(!data.get("owner").toString().equals(userId)){
                 owner = false;
                 DeleteHouseholdButton.setVisibility(View.GONE);
                 EditHouseholdNameimageButton.setVisibility(View.GONE);
                 newHouseholdMemberButton.setVisibility(View.GONE);
             }
-        });
 
-        householdGuestsList();
+            householdGuestsList();
+        });
     }
 
     @Override
@@ -121,7 +129,7 @@ public class Settings extends AppCompatActivity {
         if (deleteHousehold){
             String password = passwordEditText.getText().toString();
             if (password.length() != 0){
-                firebaseAuthHelper.getFirebaseAuth().signInWithEmailAndPassword(ownerEmail, password).addOnCompleteListener(this, task -> {
+                firebaseAuthHelper.getFirebaseAuth().signInWithEmailAndPassword(home.getOwnerEmail(), password).addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         // háztartás törlése
                         dbHelper.getHomeCollection().document(homeId).delete();
@@ -160,28 +168,27 @@ public class Settings extends AppCompatActivity {
         addHouseholdMemberImageButton.setVisibility(View.GONE);
         String guestEmail = emailAddressEditText.getText().toString();
         //megnézem hogy megosztották-e már ezzel a felhasználóval a háztartást
-        dbHelper.getHomeCollection().document(homeId).collection("Guests").whereEqualTo("email", guestEmail).get().addOnSuccessListener(querydata ->{
-            if (querydata.isEmpty()){//lekérdezem a felhasználót hogy megtudjam a userId-ját
-                dbHelper.getUsersCollection().whereEqualTo("email", guestEmail).get().addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (DocumentSnapshot data : queryDocumentSnapshots) {
+        if (!home.getGuestEmails().contains(guestEmail)){
 
-                        // az otthon Guest táblájába bekerülnek a vendég adatai
-                        Map<String, String> member = new HashMap<>();
-                        member.put("userId", data.get("userId").toString());
-                        member.put("email", guestEmail);
-                        member.put("homeId", homeId);
-                        dbHelper.getHomeCollection().document(homeId).collection("Guests").document(data.get("userId").toString()).set(member);
+            //megnézem hogy létezik-e ilyen email címmel felhasználó
+            dbHelper.getUsersCollection().whereEqualTo("email", guestEmail).get().addOnSuccessListener(queryDocumentSnapshots -> {
+                if(queryDocumentSnapshots.getDocuments().size() != 0) {
+                    DocumentSnapshot data = queryDocumentSnapshots.getDocuments().get(0);
+                    // az otthonba bekerülnek a vendég adatai
+                    home.addGuest(data.get("userId").toString(), guestEmail);
+                    dbHelper.getHomeCollection().document(homeId).update("guestIds", home.getGuestIds());
+                    dbHelper.getHomeCollection().document(homeId).update("guestEmails", home.getGuestEmails());
 
-                        Toast.makeText(this, "Sikeres hozzáadás!", Toast.LENGTH_SHORT).show();
-                        householdGuestsList();
-                        return;
-                    }
+                    Toast.makeText(this, "Sikeres hozzáadás!", Toast.LENGTH_SHORT).show();
+                    householdGuestsList();
+                } else{
                     Toast.makeText(this, "Nincs ilyen felhasználó!", Toast.LENGTH_SHORT).show();
-                });
-            }else{
-                Toast.makeText(this, guestEmail+" már a háztartás tagja!", Toast.LENGTH_SHORT).show();
-            }
-        });
+                }
+            });
+
+        } else {
+            Toast.makeText(this, guestEmail+" már a háztartás tagja!", Toast.LENGTH_SHORT).show();
+        }
         emailAddressEditText.setText("");
     }
 
@@ -195,7 +202,10 @@ public class Settings extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // törlés az adatbázisból
-                        dbHelper.getHomeCollection().document(homeId).collection("Guests").document(userId).delete();
+                        home.deleteGuest(userId);
+                        dbHelper.getHomeCollection().document(homeId).update("guestIds", home.getGuestIds());
+                        dbHelper.getHomeCollection().document(homeId).update("guestEmails", home.getGuestEmails());
+
                         householdGuestsList();
                         dialog.cancel();
                     }
@@ -216,32 +226,31 @@ public class Settings extends AppCompatActivity {
 
     private void householdGuestsList(){
         householdMembersLayout.removeAllViews();
-        dbHelper.getHomeCollection().document(homeId).collection("Guests").get().addOnSuccessListener(queryDocumentSnapshots -> {
-            for (DocumentSnapshot data : queryDocumentSnapshots){
-                LinearLayout row = new LinearLayout(this);
-                row.setOrientation(LinearLayout.HORIZONTAL);
-                row.setGravity(Gravity.CENTER_VERTICAL);
+        for (int i = 0; i < home.getGuestEmails().size(); i++){
+            LinearLayout row = new LinearLayout(this);
+            row.setOrientation(LinearLayout.HORIZONTAL);
+            row.setGravity(Gravity.CENTER_VERTICAL);
 
-                TextView email = new TextView(this);
-                email.setText(data.get("email").toString());
-                row.addView(email);
-                if (owner){
-                    ImageButton remove = new ImageButton(this);
-                    remove.setImageResource(R.drawable.icon_remove);
-                    remove.setBackgroundResource(R.color.transparent);
+            TextView email = new TextView(this);
+            email.setText(home.getGuestEmails().get(i));
+            row.addView(email);
+            if (owner){
+                ImageButton remove = new ImageButton(this);
+                remove.setImageResource(R.drawable.icon_remove);
+                remove.setBackgroundResource(R.color.transparent);
 
-                    remove.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            removeGuest(data.get("email").toString(), data.get("userId").toString(), homeId);
-                        }
-                    });
-                    row.addView(remove);
-                }
-
-                householdMembersLayout.addView(row);
+                int finalI = i;
+                remove.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        removeGuest(home.getGuestEmails().get(finalI), home.getGuestIds().get(finalI), homeId);
+                    }
+                });
+                row.addView(remove);
             }
-        });
+
+            householdMembersLayout.addView(row);
+        }
     }
 
     @Override

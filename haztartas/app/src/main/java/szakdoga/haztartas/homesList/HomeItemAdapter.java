@@ -1,14 +1,11 @@
 package szakdoga.haztartas.homesList;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +17,6 @@ import java.util.List;
 import szakdoga.haztartas.HomeActivity;
 import szakdoga.haztartas.R;
 import szakdoga.haztartas.models.Home;
-import szakdoga.haztartas.models.Pantry;
-import szakdoga.haztartas.pantry.PantryItemAdapter;
 
 public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.ViewHolder> {
 
@@ -66,7 +61,7 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.ViewHo
 
         @SuppressLint({"ResourceAsColor", "SetTextI18n"})
         void bindTo(Home home, Context context, String userId){
-            homeName.setText(home.getHomeName());
+            homeName.setText(home.getName());
 
             homeItemRelLay.setOnClickListener(new View.OnClickListener() {
                 @Override
