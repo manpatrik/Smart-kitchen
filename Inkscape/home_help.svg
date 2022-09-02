@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="rajz.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.45254835"
+     inkscape:cx="435.3126"
+     inkscape:cy="538.06405"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       position="35.553384,208.94337"
+       orientation="1,0"
+       id="guide1014" />
+    <sodipodi:guide
+       position="253.739,229.76501"
+       orientation="1,0"
+       id="guide1016" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <rect
+       x="483.92619"
+       y="996.5786"
+       width="250.80193"
+       height="69.605822"
+       id="rect31859" />
+    <rect
+       x="196.66407"
+       y="994.36889"
+       width="272.89902"
+       height="120.42912"
+       id="rect25891" />
+    <rect
+       x="361.71875"
+       y="134.375"
+       width="513.28125"
+       height="162.5"
+       id="rect73603" />
+    <marker
+       style="overflow:visible"
+       id="TriangleInM"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleInM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(-0.4)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path1157" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker51468"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.6) translate(0,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round"
+         id="path51466" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker51458"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.6) translate(0,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round"
+         id="path51456" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Sstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Sstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.2) translate(6,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path1033" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker51440"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.6) translate(0,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round"
+         id="path51438" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker51430"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path51428" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Mstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.6) translate(0,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round"
+         id="path1045" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker51332"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleInL"
+       inkscape:isstock="true">
+      <path
+         transform="scale(-0.8)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path51330" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleOutL"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleOutL"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path1163" />
+    </marker>
+    <inkscape:path-effect
+       effect="powerstroke"
+       id="path-effect50953"
+       is_visible="true"
+       lpeversion="1"
+       offset_points="0,4.99214"
+       not_jump="false"
+       sort_points="true"
+       interpolator_type="CubicBezierJohan"
+       interpolator_beta="0.2"
+       start_linecap_type="zerowidth"
+       linejoin_type="extrp_arc"
+       miter_limit="4"
+       scale_width="1"
+       end_linecap_type="zerowidth" />
+    <rect
+       x="638.67499"
+       y="236.39269"
+       width="179.71374"
+       height="120.26997"
+       id="rect29293" />
+    <rect
+       x="752.03289"
+       y="362.19231"
+       width="225.33339"
+       height="49.766883"
+       id="rect3955" />
+    <marker
+       style="overflow:visible"
+       id="TriangleOutM"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path1166" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="marker1341"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(1.1) rotate(180) translate(1,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path1339" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleInL"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleInL"
+       inkscape:isstock="true">
+      <path
+         transform="scale(-0.8)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path1154" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow2Mend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.6) rotate(180) translate(0,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path1048" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Mend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4) rotate(180) translate(10,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path1030" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path1024" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow2Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(1.1) rotate(180) translate(1,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path1042" />
+    </marker>
+    <inkscape:path-effect
+       effect="powerstroke"
+       id="path-effect939"
+       is_visible="true"
+       lpeversion="1"
+       offset_points="0,4.99214"
+       not_jump="false"
+       sort_points="true"
+       interpolator_type="CubicBezierJohan"
+       interpolator_beta="0.2"
+       start_linecap_type="zerowidth"
+       linejoin_type="extrp_arc"
+       miter_limit="4"
+       scale_width="1"
+       end_linecap_type="zerowidth" />
+    <rect
+       x="752.0329"
+       y="362.19232"
+       width="225.33339"
+       height="49.766884"
+       id="rect3955-7" />
+    <rect
+       x="361.71875"
+       y="134.375"
+       width="513.28125"
+       height="162.5"
+       id="rect102777" />
+    <marker
+       style="overflow:visible"
+       id="TriangleOutM-0"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path1166-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleInM-9"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleInM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(-0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path1157-7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleOutM-5"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path1166-1" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Réteg 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:3.39, 1.13;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#TriangleOutM-5)"
+       d="m 197.40258,281.67274 c 3.34108,-1.95575 55.62397,-31.55649 27.73876,-36.80457"
+       id="path869-4"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\manpatrik\Desktop\home_help_arrows.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4.52, 0.565;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#TriangleInM-9)"
+       d="m 130.7524,243.55882 c 0,0 -17.93982,4.09988 -13.24799,17.4413 2.65769,8.51453 -4.25138,15.48404 -7.67496,21.21695"
+       id="path51320-7"
+       sodipodi:nodetypes="ccc"
+       inkscape:export-filename="C:\Users\manpatrik\Desktop\home_help_arrows.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:3.39, 1.13;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#TriangleOutM)"
+       d="m 212.81723,122.70852 c 0,0 5.74012,15.07618 -4.86703,30.43825"
+       id="path869"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\manpatrik\Desktop\home_help_arrows.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:3.39, 1.13;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#TriangleOutM-0)"
+       d="m 54.846903,268.00997 c 0,0 -1.842654,-16.02638 12.227051,-28.29619"
+       id="path869-2"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\manpatrik\Desktop\home_help_arrows.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-6.4986415,12.183468)"
+       id="text3953"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:'Ink Free';-inkscape-font-specification:'Ink Free';white-space:pre;shape-inside:url(#rect3955);fill:#000000;fill-opacity:1;stroke:none"
+       inkscape:export-filename="C:\Users\manpatrik\Desktop\home_help_arrows.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100"><tspan
+         x="752.0332"
+         y="397.97844"
+         id="tspan1578">receptek</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-104.77739,-34.423873)"
+       id="text3953-1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:'Ink Free';-inkscape-font-specification:'Ink Free';white-space:pre;shape-inside:url(#rect3955-7);fill:#000000;fill-opacity:1;stroke:none"
+       inkscape:export-filename="C:\Users\manpatrik\Desktop\home_help_arrows.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100"><tspan
+         x="752.0332"
+         y="397.97844"
+         id="tspan1580">  </tspan></text>
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text29291"
+       style="line-height:1.25;font-family:'Segoe Print';font-size:40px;-inkscape-font-specification:'Segoe Print';white-space:pre;shape-inside:url(#rect29293)" />
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:'Segoe Print';-inkscape-font-specification:'Segoe Print';stroke-width:0.264583"
+       x="186.17365"
+       y="44.988914"
+       id="text31299"><tspan
+         sodipodi:role="line"
+         id="tspan31297"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Mistral;-inkscape-font-specification:Mistral;stroke-width:0.264583"
+         x="186.17365"
+         y="44.988914" /></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4.52, 0.565;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#TriangleInM)"
+       d="m 113.37851,103.47647 c 0,0 11.78223,-0.82683 13.43587,-12.402345 1.65365,-11.57552 -7.64811,-10.541992 -7.64811,-10.541992 0,0 -4.54752,-0.206705 -4.75423,4.134115 -0.20671,4.34082 4.96094,3.513997 4.96094,3.513997 0,0 7.64811,0.826823 11.98893,-12.815755"
+       id="path51320"
+       inkscape:export-filename="C:\Users\manpatrik\Desktop\home_help_arrows.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-9.7151693,5.1676432)"
+       id="text73601"
+       style="font-size:40px;line-height:1.25;font-family:'Segoe Print';-inkscape-font-specification:'Segoe Print';white-space:pre;shape-inside:url(#rect73603)" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-32.555732,13.972889)"
+       id="text102775"
+       style="font-size:40px;line-height:1.25;font-family:'Segoe Print';-inkscape-font-specification:'Segoe Print';text-align:center;white-space:pre;shape-inside:url(#rect102777)"
+       x="167.38281"
+       y="0"
+       inkscape:export-filename="C:\Users\manpatrik\Desktop\home_help_arrows.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100"><tspan
+         x="450.27344"
+         y="168.68938"
+         id="tspan1584"><tspan
+           style="font-family:'Indie Flower';-inkscape-font-specification:'Indie Flower'"
+           id="tspan1582">itt vannak a hűtőben
+</tspan></tspan><tspan
+         x="496.50391"
+         y="221.39064"
+         id="tspan1588"><tspan
+           style="font-family:'Indie Flower';-inkscape-font-specification:'Indie Flower'"
+           id="tspan1586">található dolgok</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-15.631677,4.3848907)"
+       id="text25889"
+       style="font-size:40px;line-height:1.25;font-family:'Segoe Print';-inkscape-font-specification:'Segoe Print';white-space:pre;shape-inside:url(#rect25891)"
+       inkscape:export-filename="C:\Users\manpatrik\Desktop\home_help_arrows.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100"><tspan
+         x="196.66406"
+         y="1028.6835"
+         id="tspan1592"><tspan
+           style="font-family:'Indie Flower';-inkscape-font-specification:'Indie Flower'"
+           id="tspan1590">mélyhűtő</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text31857"
+       style="font-size:40px;line-height:1.25;font-family:'Segoe Print';-inkscape-font-specification:'Segoe Print';white-space:pre;shape-inside:url(#rect31859)" />
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:'Segoe Print';-inkscape-font-specification:'Segoe Print';text-align:center;text-anchor:middle;stroke-width:0.264583"
+       x="193.15796"
+       y="290.27966"
+       id="text37761"
+       inkscape:export-filename="C:\Users\manpatrik\Desktop\home_help_arrows.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100"><tspan
+         sodipodi:role="line"
+         id="tspan37759"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Indie Flower';-inkscape-font-specification:'Indie Flower';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="193.15796"
+         y="290.27966">zöldségek/gyümölcsök </tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Indie Flower';-inkscape-font-specification:'Indie Flower';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="193.15796"
+         y="304.22348"
+         id="tspan44039">helye</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:'Segoe Print';-inkscape-font-specification:'Segoe Print';text-align:center;text-anchor:middle;stroke-width:0.264583"
+       x="103.29423"
+       y="288.79126"
+       id="text55675"
+       inkscape:export-filename="C:\Users\manpatrik\Desktop\home_help_arrows.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100"><tspan
+         sodipodi:role="line"
+         id="tspan55673"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Indie Flower';-inkscape-font-specification:'Indie Flower';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="103.29423"
+         y="288.79126">egyéb konyhai</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Indie Flower';-inkscape-font-specification:'Indie Flower';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="103.29423"
+         y="302.73508"
+         id="tspan75383">hozzávalók</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.6417px;line-height:1.25;font-family:'Indie Flower';-inkscape-font-specification:'Indie Flower';text-align:center;text-anchor:middle;stroke-width:0.264583"
+       x="127.26974"
+       y="-7.7251272"
+       id="text88291"
+       inkscape:export-filename="C:\Users\manpatrik\Desktop\home_help_arrows.png"
+       inkscape:export-xdpi="200"
+       inkscape:export-ydpi="200"><tspan
+         sodipodi:role="line"
+         id="tspan88289"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.6417px;font-family:'Indie Flower';-inkscape-font-specification:'Indie Flower';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="127.26974"
+         y="-7.7251272">Kattints a megfelelő helyre, hogy megnézhesd </tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.6417px;font-family:'Indie Flower';-inkscape-font-specification:'Indie Flower';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="127.26974"
+         y="6.8269973"
+         id="tspan108349">az otthon található hozzávalóidat!</tspan></text>
+  </g>
+</svg>
