@@ -33,7 +33,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import szakdoga.haztartas.HomeActivity;
 import szakdoga.haztartas.R;
 import szakdoga.haztartas.firebaseAuthentication.FirebaseAuthHelper;
 import szakdoga.haztartas.firestore.DbHelper;

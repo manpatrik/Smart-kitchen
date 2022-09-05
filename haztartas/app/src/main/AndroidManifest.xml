@@ -22,9 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Settings" />
-        <activity android:name=".AddOrRemoveFood" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".home.Settings" />
+        <activity android:name=".home.HomeActivity" />
         <activity android:name=".homesList.HomesListActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".recipe.RecipeModifyActivity" />

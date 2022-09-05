@@ -1,4 +1,4 @@
-package szakdoga.haztartas;
+package szakdoga.haztartas.home;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -30,6 +30,7 @@ import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import szakdoga.haztartas.R;
 import szakdoga.haztartas.firebaseAuthentication.FirebaseAuthHelper;
 import szakdoga.haztartas.firestore.DbHelper;
 import szakdoga.haztartas.models.Home;

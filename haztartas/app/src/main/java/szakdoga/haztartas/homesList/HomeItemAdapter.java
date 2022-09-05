@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import szakdoga.haztartas.HomeActivity;
+import szakdoga.haztartas.home.HomeActivity;
 import szakdoga.haztartas.R;
 import szakdoga.haztartas.models.Home;
 
