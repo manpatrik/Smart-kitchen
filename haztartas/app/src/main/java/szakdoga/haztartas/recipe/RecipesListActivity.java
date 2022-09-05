@@ -13,11 +13,14 @@ import android.view.MenuItem;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import szakdoga.haztartas.R;
 import szakdoga.haztartas.firebaseAuthentication.FirebaseAuthHelper;
 import szakdoga.haztartas.firestore.DbHelper;
+import szakdoga.haztartas.models.Ingredient;
 import szakdoga.haztartas.models.Recipe;
 
 public class RecipesListActivity extends AppCompatActivity {
@@ -64,18 +67,7 @@ public class RecipesListActivity extends AppCompatActivity {
         recipes.clear();
         dbHelper.getHomeCollection().document(homeId).collection("Recipes").whereEqualTo("category", category).get().addOnSuccessListener(queryDocumentSnapshots -> {
             for (DocumentSnapshot data: queryDocumentSnapshots){
-                Recipe recipe = new Recipe(
-                        data.getId().toString(),
-                        data.get("name").toString(),
-                        data.get("category").toString(),
-                        data.get("description").toString(),
-                        data.get("ingredients").toString(),
-                        data.get("preparationTime").toString(),
-                        Integer.parseInt(data.get("difficulty").toString()),
-                        Integer.parseInt(data.get("quantity").toString()),
-                        data.get("quantityUnit").toString()
-                );
-                recipes.add(recipe);
+                recipes.add(data.toObject(Recipe.class));
             }
             recipeItemAdapter.notifyDataSetChanged();
         });

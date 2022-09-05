@@ -37,7 +37,7 @@ public class HomesListActivity extends AppCompatActivity {
     private RecyclerView homesRecylerView;
     private EditText homeNameEditText;
 
-    private List<Home> homes = new ArrayList<>();
+    public static List<Home> homes = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +54,6 @@ public class HomesListActivity extends AppCompatActivity {
         homeItemAdapter = new HomeItemAdapter(this, homes, userId);
         homesRecylerView.setAdapter(homeItemAdapter);
         homesRecylerView.setLayoutManager(new LinearLayoutManager(this));
-
-        System.out.println("UserId: " + userId);
     }
 
     @Override
@@ -83,16 +81,14 @@ public class HomesListActivity extends AppCompatActivity {
         // tulajdonos
         dbHelper.getHomeCollection().whereEqualTo("owner", userId).get().addOnSuccessListener(queryDocumentSnapshots -> {
             for (DocumentSnapshot data: queryDocumentSnapshots){
-                Home home = new Home(data.getId().toString(), data.get("name").toString());
-                homes.add(home);
+                homes.add(data.toObject(Home.class));
                 homeItemAdapter.notifyDataSetChanged();
             }
 
             // vendégek
             dbHelper.getHomeCollection().whereArrayContains("guestIds", userId).get().addOnSuccessListener(queryDocumentSnapshots2 ->{
                 for (DocumentSnapshot data: queryDocumentSnapshots2) {
-                    Home home = new Home(data.getId(), data.get("name").toString());
-                    homes.add(home);
+                    homes.add(data.toObject(Home.class));
                     homeItemAdapter.notifyDataSetChanged();
                 }
             });

@@ -116,20 +116,13 @@ public class NewPantryItem extends AppCompatActivity {
                     builder.setPositiveButton(data.get("name") + " módosítása", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            finish();
-                            Pantry pantry = new Pantry(
-                                    data.getId(),
-                                    data.get("name").toString(),
-                                    Double.parseDouble(data.get("quantity").toString()),
-                                    data.get("quantityUnit").toString(),
-                                    data.get("where").toString(),
-                                    (List<String>) data.get("barcodes")
-                            );
+                            Pantry pantry = data.toObject(Pantry.class);
                             Intent intent = new Intent(NewPantryItem.this, ModifyPantryItem.class);
                             intent.putExtra("pantry", (Serializable) pantry);
                             intent.putExtra("userId", userId);
                             intent.putExtra("homeId", homeId);
                             startActivity(intent);
+                            finish();
                         }
                     });
 
@@ -222,14 +215,7 @@ public class NewPantryItem extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 finish();
-                                Pantry pantry = new Pantry(
-                                        data.getId(),
-                                        data.get("name").toString(),
-                                        Double.parseDouble(data.get("quantity").toString()),
-                                        data.get("quantityUnit").toString(),
-                                        data.get("where").toString(),
-                                        (List<String>) data.get("barcodes")
-                                );
+                                Pantry pantry = data.toObject(Pantry.class);
                                 Intent intent = new Intent(NewPantryItem.this, ModifyPantryItem.class);
                                 intent.putExtra("pantry", (Serializable) pantry);
                                 intent.putExtra("userId", userId);

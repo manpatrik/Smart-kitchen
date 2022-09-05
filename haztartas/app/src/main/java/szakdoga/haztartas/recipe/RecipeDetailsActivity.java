@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 import szakdoga.haztartas.R;
 import szakdoga.haztartas.firebaseAuthentication.FirebaseAuthHelper;
@@ -70,16 +72,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     private void recipeUpdate() {
         ingredientslayout.removeAllViews();
         dbHelper.getHomeCollection().document(homeId).collection("Recipes").document(recipe.getId()).get().addOnSuccessListener(data -> {
-            recipe = new Recipe(
-                    data.getId(),
-                    data.get("name").toString(),
-                    data.get("category").toString(),
-                    data.get("description").toString(),
-                    data.get("ingredients").toString(),
-                    data.get("preparationTime").toString(),
-                    Integer.parseInt(data.get("difficulty").toString()),
-                    Integer.parseInt(data.get("quantity").toString()),
-                    data.get("quantityUnit").toString());
+            recipe = data.toObject(Recipe.class);
 
             recipeName.setText(recipe.getName());
             recipeQuantity.setText(recipe.getQuantity()+"");

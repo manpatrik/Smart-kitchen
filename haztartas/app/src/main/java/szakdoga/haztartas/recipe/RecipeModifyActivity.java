@@ -18,6 +18,9 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import szakdoga.haztartas.R;
 import szakdoga.haztartas.firebaseAuthentication.FirebaseAuthHelper;
 import szakdoga.haztartas.firestore.DbHelper;
@@ -78,6 +81,11 @@ public class RecipeModifyActivity extends AppCompatActivity {
                 quantityUnitSpinner.setSelection(1);
                 break;
         }
+        setIngredientsLayout();
+
+    }
+
+    private void setIngredientsLayout() {
         for (Ingredient ingredient : recipe.getIngredients()){
             LinearLayout newRow = new LinearLayout(this);
             newRow.setOrientation(LinearLayout.HORIZONTAL);
@@ -126,7 +134,6 @@ public class RecipeModifyActivity extends AppCompatActivity {
 
             ingredientsLayout.addView(newRow);
         }
-
     }
 
     @Override
@@ -179,25 +186,24 @@ public class RecipeModifyActivity extends AppCompatActivity {
         String homeId = getIntent().getStringExtra("homeId");
         String error = null;
 
-        String ingredients = "";
+        List<Ingredient> ingredients = new ArrayList<>();
         for (int i = 0; i < ingredientsLayout.getChildCount(); i++){
             LinearLayout row = (LinearLayout) ingredientsLayout.getChildAt(i);
-            String quantity = ((EditText) row.getChildAt(0)).getText().toString();
-            String quantityUnit = ((Spinner) row.getChildAt(1)).getSelectedItem().toString();
-            String name = ((EditText) row.getChildAt(2)).getText().toString();
-            ingredients += quantity + ";" + quantityUnit + ";" + name + "#";
-            if (name.length() == 0){
+
+            Ingredient ingredient = new Ingredient();
+            ingredient.setQuantity(((EditText) row.getChildAt(0)).getText().toString());
+            ingredient.setQuantityUnit(((Spinner) row.getChildAt(1)).getSelectedItem().toString());
+            ingredient.setName(((EditText) row.getChildAt(2)).getText().toString());
+
+            if (ingredient.getName().length() == 0){
                 error = "Nem adta meg minden hozzávaló nevét!";
                 break;
             }
+            ingredients.add(ingredient);
         }
-        if (ingredientsLayout.getChildCount() > 0){
-            ingredients = ingredients.substring(0, ingredients.length()-1);
-        } else {
+        if (ingredientsLayout.getChildCount() == 0){
             error = "Nem adott meg hozzávalót!";
-        }
-
-        if (nameEditText.getText().toString().length() == 0){
+        } else if (nameEditText.getText().toString().length() == 0){
             error = "Nem adott a receptnek nevet!";
         } else if (preparationTimeEditText.getText().toString().length() == 0){
             error = "Nem adta meg az elkészítési időt!";
@@ -214,7 +220,7 @@ public class RecipeModifyActivity extends AppCompatActivity {
                     "ingredients", ingredients,
                     "preparationTime", preparationTimeEditText.getText().toString(),
                     "difficulty", 1,
-                    "quantity", quantityEditText.getText().toString(),
+                    "quantity", Integer.parseInt(quantityEditText.getText().toString()),
                     "quantityUnit", quantityUnitSpinner.getSelectedItem().toString()
             );
 

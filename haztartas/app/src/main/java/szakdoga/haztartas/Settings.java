@@ -17,11 +17,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import szakdoga.haztartas.firebaseAuthentication.FirebaseAuthHelper;
 import szakdoga.haztartas.firestore.DbHelper;
@@ -132,7 +139,16 @@ public class Settings extends AppCompatActivity {
                 firebaseAuthHelper.getFirebaseAuth().signInWithEmailAndPassword(home.getOwnerEmail(), password).addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         // háztartás törlése
+                        try {
+                            // retrieve a small batch of documents to avoid out-of-memory errors
+                        } catch (Exception e) {
+                            System.err.println("Error deleting collection : " + e.getMessage());
+                        }
+
+                        dbHelper.deleteCollection(dbHelper.getHomeCollection().document(homeId).collection("Pantry"), Executors.newFixedThreadPool(1));
+                        dbHelper.deleteCollection(dbHelper.getHomeCollection().document(homeId).collection("Recipes"), Executors.newFixedThreadPool(1));
                         dbHelper.getHomeCollection().document(homeId).delete();
+
                         finish();
                     } else {
                         Toast.makeText(this, "Hibás jelszó!", Toast.LENGTH_SHORT).show();

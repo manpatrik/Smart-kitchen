@@ -10,6 +10,9 @@ public class Home {
     private List<String> guestIds;
     private List<String> guestEmails;
 
+    public Home() {
+    }
+
     public Home(String homeId, String name, String ownerEmail, String owner, List<String> guestsId, List<String> guestEmails) {
         this.homeId = homeId;
         this.name = name;
@@ -19,41 +22,6 @@ public class Home {
         this.guestEmails = guestEmails;
     }
 
-    public Home(String homeId, String name) {
-        this.homeId = homeId;
-        this.name = name;
-    }
-
-    public void addGuest(String userId, String email){
-        this.guestIds.add(userId);
-        this.guestEmails.add(email);
-    }
-
-    public void deleteGuest(String userId){
-        for( int i=0; i<this.guestIds.size(); i++ ){
-            if(guestIds.get(i).equals(userId)){
-                guestIds.remove(i);
-                guestEmails.remove(i);
-                return;
-            }
-        }
-    }
-
-    public List<String> getGuestIds() {
-        return guestIds;
-    }
-
-    public List<String> getGuestEmails() {
-        return guestEmails;
-    }
-
-    public String getOwnerEmail() {
-        return ownerEmail;
-    }
-
-    public String getOwner() {
-        return owner;
-    }
 
     public String getHomeId() {
         return homeId;
@@ -69,5 +37,52 @@ public class Home {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getOwnerEmail() {
+        return ownerEmail;
+    }
+
+    public void setOwnerEmail(String ownerEmail) {
+        this.ownerEmail = ownerEmail;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public List<String> getGuestIds() {
+        return guestIds;
+    }
+
+    public void setGuestIds(List<String> guestIds) {
+        this.guestIds = guestIds;
+    }
+
+    public List<String> getGuestEmails() {
+        return guestEmails;
+    }
+
+    public void setGuestEmails(List<String> guestEmails) {
+        this.guestEmails = guestEmails;
+    }
+
+    public void addGuest(String userId, String email){
+        this.guestIds.add(userId);
+        this.guestEmails.add(email);
+    }
+
+    public void deleteGuest(String userId){
+        for( int i=0; i<this.guestIds.size(); i++ ){
+            if(guestIds.get(i).equals(userId)){
+                guestIds.remove(i);
+                guestEmails.remove(i);
+                return;
+            }
+        }
     }
 }

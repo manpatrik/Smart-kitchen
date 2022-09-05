@@ -18,11 +18,15 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import szakdoga.haztartas.R;
 import szakdoga.haztartas.firestore.DbHelper;
+import szakdoga.haztartas.models.Ingredient;
+import szakdoga.haztartas.models.Recipe;
 
 public class NewRecipeActivity extends AppCompatActivity {
 
@@ -120,25 +124,25 @@ public class NewRecipeActivity extends AppCompatActivity {
     public void saveNewRecipe(View view) {
         String error = null;
 
-        String ingredients = "";
+        List<Ingredient> ingredients = new ArrayList<>();
         for (int i = 0; i < ingredientsLayout.getChildCount(); i++){
             LinearLayout row = (LinearLayout) ingredientsLayout.getChildAt(i);
-            String quantity = ((EditText) row.getChildAt(0)).getText().toString();
-            String quantityUnit = ((Spinner) row.getChildAt(1)).getSelectedItem().toString();
-            String name = ((EditText) row.getChildAt(2)).getText().toString();
-            ingredients += quantity + ";" + quantityUnit + ";" + name + "#";
-            if (name.length() == 0){
+
+            Ingredient ingredient = new Ingredient();
+            ingredient.setQuantity(((EditText) row.getChildAt(0)).getText().toString());
+            ingredient.setQuantityUnit(((Spinner) row.getChildAt(1)).getSelectedItem().toString());
+            ingredient.setName(((EditText) row.getChildAt(2)).getText().toString());
+
+            if (ingredient.getName().length() == 0){
                 error = "Nem adta meg minden hozzávaló nevét!";
                 break;
             }
-        }
-        if (ingredientsLayout.getChildCount() > 0){
-            ingredients = ingredients.substring(0, ingredients.length()-1);
-        } else {
-            error = "Nem adott meg hozzávalót!";
-        }
+            ingredients.add(ingredient);
 
-        if (nameEditText.getText().toString().length() == 0){
+        }
+        if (ingredientsLayout.getChildCount() == 0){
+            error = "Nem adott meg hozzávalót!";
+        } else if (nameEditText.getText().toString().length() == 0){
             error = "Nem adott a receptnek nevet!";
         } else if (preparationTimeEditText.getText().toString().length() == 0){
             error = "Nem adta meg az elkészítési időt!";
@@ -147,17 +151,19 @@ public class NewRecipeActivity extends AppCompatActivity {
         }
 
         if (error == null) {
-            Map<String, Object> recipe = new HashMap<>();
-            recipe.put("name", nameEditText.getText().toString());
-            recipe.put("category", categorySpinner.getSelectedItem().toString());
-            recipe.put("description", descriptionEditText.getText().toString());
-            recipe.put("ingredients", ingredients);
-            recipe.put("preparationTime", preparationTimeEditText.getText().toString());
-            recipe.put("difficulty", 1);
-            recipe.put("quantity", quantityEditText.getText().toString());
-            recipe.put("quantityUnit", quantityUnitSpinner.getSelectedItem().toString());
+            Recipe recipe = new Recipe();
+            recipe.setName(nameEditText.getText().toString());
+            recipe.setCategory(categorySpinner.getSelectedItem().toString());
+            recipe.setDescription(descriptionEditText.getText().toString());
+            recipe.setPreparationTime(preparationTimeEditText.getText().toString());
+            recipe.setQuantity(Integer.parseInt(quantityEditText.getText().toString()));
+            recipe.setQuantityUnit(quantityUnitSpinner.getSelectedItem().toString());
+            recipe.setIngredients(ingredients);
 
-            dbHelper.getHomeCollection().document(homeId).collection("Recipes").add(recipe);
+
+            dbHelper.getHomeCollection().document(homeId).collection("Recipes").add(recipe).addOnSuccessListener(result -> {
+                dbHelper.getHomeCollection().document(homeId).collection("Recipes").document(result.getId()).update("id", result.getId());
+            });
             Toast.makeText(this, "Sikeres mentés!", Toast.LENGTH_SHORT).show();
             this.finish();
         } else {

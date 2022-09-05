@@ -14,6 +14,10 @@ public class Pantry implements Serializable {
     private String where; // Hol tároljuk (hűtő, fagyasztó...)
     private List<String> barcodes;
 
+    public Pantry(){
+
+    }
+
     public Pantry(String name, double quantity, String quantityUnit, String where, List<String> barcodes) {
         this.name = name;
         this.quantity = quantity;

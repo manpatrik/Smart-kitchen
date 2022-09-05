@@ -85,9 +85,6 @@ public class HomeActivity extends AppCompatActivity {
 
         firebaseAuthHelper = new FirebaseAuthHelper();
         dbHelper = new DbHelper();
-
-        System.out.println("HomeId: " + getIntent().getStringExtra("homeId"));
-        System.out.println("UserId: " + userId);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
