@@ -12,9 +12,7 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Haztartas">
-        <activity
-            android:name=".pantry.ModifyPantryItem"
-            android:exported="false" />
+        <activity android:name=".pantry.ModifyPantryItem"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -25,6 +25,8 @@ import android.widget.Toast;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import szakdoga.haztartas.R;
 import szakdoga.haztartas.firebaseAuthentication.FirebaseAuthHelper;
@@ -180,6 +182,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         builder.setTitle("Főzés "+recipeQuantity+ " főre");
         builder.setMessage("Az alábbi hozzávalók lesznek levonva a recept szerint "+ recipeQuantity + " főre:");
 
+        // hozzávalók
         dbHelper.getHomeCollection().document(homeId).collection("Pantry").whereIn("name", recipe.getIngredientsNames()).get().addOnSuccessListener(queryDocumentSnapshots -> {
             int padding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics());
 
@@ -206,8 +209,10 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
             tableLayout.addView(tableHead);
 
+            List<Pantry> pantries = new ArrayList<>();
             for (DocumentSnapshot data : queryDocumentSnapshots){
                 Pantry pantry = data.toObject(Pantry.class);
+                pantries.add(pantry);
 
                 TableRow tableRow = new TableRow(RecipeDetailsActivity.this);
                 tableRow.setGravity(Gravity.CENTER_VERTICAL);
@@ -258,8 +263,16 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
             builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-
+                public void onClick(DialogInterface dialogInterface, int j) {
+                    for (int i = 1; i < tableLayout.getChildCount(); i++){
+                        TableRow tableRow = (TableRow) tableLayout.getChildAt(i);
+                        String name = pantries.get(i-1).getName();
+                        System.out.println(tableRow.getChildAt(2));
+                        Double quantity = Double.parseDouble(((EditText)((LinearLayout) tableRow.getChildAt(2)).getChildAt(0)).getText().toString());
+                        dbHelper.getHomeCollection().document(homeId).collection("Pantry").document(pantries.get(i-1).getId()).update("quantity", quantity);
+                    }
+                    dialogInterface.cancel();
+                    Toast.makeText(RecipeDetailsActivity.this, "Sikeres főzés! Hozzávalók kivonva!", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -271,14 +284,15 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     private double getNewQuantity(double pantryIngQuantity, String pantryIngQuantityUnit, double recipeIngQuantity, String recipeIngQuantityUnit, double oldQuantity, double newQuantity) {
         Double newQuantityMultiplier;
         Double returnQuantity = pantryIngQuantity;
+
         System.out.println("units: "+ recipeIngQuantityUnit+pantryIngQuantityUnit);
         if (pantryIngQuantityUnit.equals(recipeIngQuantityUnit)){
             newQuantityMultiplier = (double)newQuantity / (double)oldQuantity;
             returnQuantity =  pantryIngQuantity - (recipeIngQuantity * newQuantityMultiplier);
-        } else if (pantryIngQuantityUnit.equals("liter") && recipeIngQuantityUnit.equals("ml")){
+        } else if ((pantryIngQuantityUnit.equals("liter") && recipeIngQuantityUnit.equals("ml"))  || (pantryIngQuantityUnit.equals("kg") && recipeIngQuantityUnit.equals("g"))){
             newQuantityMultiplier = (double)newQuantity / (double)oldQuantity / 1000.0;
             returnQuantity =  pantryIngQuantity - (recipeIngQuantity * newQuantityMultiplier);
-        } else if (pantryIngQuantityUnit.equals("ml") && recipeIngQuantityUnit.equals("liter")){
+        } else if (pantryIngQuantityUnit.equals("ml") && recipeIngQuantityUnit.equals("liter") || (pantryIngQuantityUnit.equals("g") && recipeIngQuantityUnit.equals("kg"))){
             newQuantityMultiplier = (double)newQuantity / (double)oldQuantity * 1000.0;
             returnQuantity =  pantryIngQuantity - (recipeIngQuantity * newQuantityMultiplier);
         }
