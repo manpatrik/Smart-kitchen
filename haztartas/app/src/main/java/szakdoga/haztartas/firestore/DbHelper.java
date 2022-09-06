@@ -73,11 +73,12 @@ public class DbHelper implements DbHelperInterface {
 
                 // Minta hozzávalók feltöltése a háztartásba
                 List<Pantry> pantries = new ArrayList<>();
-                pantries.add(new Pantry("tojás", 8, "db", "Hűtő", Arrays.asList()));
+                pantries.add(new Pantry("tojás", 8, "darab", "Hűtő", Arrays.asList()));
                 pantries.add(new Pantry("liszt", 1.5, "kg", "Szekrény",Arrays.asList()));
+                pantries.add(new Pantry("paradicsomlé", 750, "ml", "Szekrény",Arrays.asList()));
                 pantries.add(new Pantry("borsó", 1, "kg", "Fagyasztó",Arrays.asList()));
-                pantries.add(new Pantry("répa", 4, "db", "Zöldségek/gyümülcsök",Arrays.asList()));
-                pantries.add(new Pantry("fehér répa", 3, "db", "Zöldségek/gyümülcsök",Arrays.asList()));
+                pantries.add(new Pantry("répa", 4, "darab", "Zöldségek/gyümülcsök",Arrays.asList()));
+                pantries.add(new Pantry("fehér répa", 3, "darab", "Zöldségek/gyümülcsök",Arrays.asList()));
                 for(Pantry pantry : pantries){
                     homeCollection.document(homeId).collection("Pantry").add(pantry).addOnSuccessListener(documentReference -> {
                         homeCollection.document(homeId).collection("Pantry").document(documentReference.getId()).update("id", documentReference.getId());
@@ -97,7 +98,8 @@ public class DbHelper implements DbHelperInterface {
                 );
                 recipe.addIngredient(new Ingredient("500", "ml","paradicsomlé"));
                 recipe.addIngredient(new Ingredient("1", "csipet","só"));
-                recipe.addIngredient(new Ingredient("1", "kanál","cukor"));
+                recipe.addIngredient(new Ingredient("1", "evőkanál","liszt"));
+                recipe.addIngredient(new Ingredient("1", "evőkanál","cukor"));
                 recipe.addIngredient(new Ingredient("2", "marék","betűtészta"));
 
                 homeCollection.document(homeId).collection("Recipes").add(recipe).addOnSuccessListener(result -> {

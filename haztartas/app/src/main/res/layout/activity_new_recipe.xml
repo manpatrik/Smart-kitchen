@@ -107,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="500"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:text=""
                     app:layout_constraintStart_toStartOf="parent" />
 

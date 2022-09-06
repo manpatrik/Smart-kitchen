@@ -91,7 +91,7 @@ public class RecipeModifyActivity extends AppCompatActivity {
             newRow.setOrientation(LinearLayout.HORIZONTAL);
 
             EditText quantity = new EditText(this);
-            quantity.setInputType(InputType.TYPE_CLASS_NUMBER);
+            quantity.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
             quantity.setText(ingredient.getQuantity());
             quantity.setHint("500");
             quantity.setEms(10);
@@ -148,7 +148,7 @@ public class RecipeModifyActivity extends AppCompatActivity {
         newRow.setOrientation(LinearLayout.HORIZONTAL);
 
         EditText quantity = new EditText(this);
-        quantity.setInputType(InputType.TYPE_CLASS_NUMBER);
+        quantity.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
         quantity.setHint("500");
         quantity.setEms(10);
         quantity.setWidth((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70, getResources().getDisplayMetrics()));

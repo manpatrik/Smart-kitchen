@@ -127,4 +127,14 @@ public class Recipe implements Serializable {
     public void addIngredient(Ingredient ingredient){
         this.ingredients.add(ingredient);
     }
+
+    public List<String> getIngredientsNames(){
+        List<String> ingredientsNames = new ArrayList<>();
+
+        for (Ingredient ingredient : this.ingredients){
+            ingredientsNames.add(ingredient.getName());
+        }
+
+        return ingredientsNames;
+    }
 }
