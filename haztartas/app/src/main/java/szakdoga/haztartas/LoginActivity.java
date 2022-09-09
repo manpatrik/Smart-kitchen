@@ -53,9 +53,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void register(View view) {
-        String email = emailEditText.getText().toString();
-        Intent registerIntent = new Intent(this, RegisterActivity.class);
-        registerIntent.putExtra("email", email);
-        this.startActivity(registerIntent);
+        Intent intent = new Intent(this, SendNotification.class);
+        startActivity(intent);
+
+//        String email = emailEditText.getText().toString();
+//        Intent registerIntent = new Intent(this, RegisterActivity.class);
+//        registerIntent.putExtra("email", email);
+//        this.startActivity(registerIntent);
     }
 }
