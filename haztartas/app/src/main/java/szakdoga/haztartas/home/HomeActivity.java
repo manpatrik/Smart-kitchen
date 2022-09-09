@@ -34,6 +34,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import szakdoga.haztartas.R;
+import szakdoga.haztartas.UserSettingsActivity;
 import szakdoga.haztartas.firebaseAuthentication.FirebaseAuthHelper;
 import szakdoga.haztartas.firestore.DbHelper;
 import szakdoga.haztartas.models.Pantry;
@@ -343,6 +344,12 @@ public class HomeActivity extends AppCompatActivity {
                     helpImage2.setVisibility(View.VISIBLE);
                     help = true;
                 }
+                return true;
+
+            case R.id.userSettings:
+                Intent userSettingsIntent = new Intent(this, UserSettingsActivity.class);
+                userSettingsIntent.putExtra("userId", userId);
+                startActivity(userSettingsIntent);
                 return true;
 
             case android.R.id.home:

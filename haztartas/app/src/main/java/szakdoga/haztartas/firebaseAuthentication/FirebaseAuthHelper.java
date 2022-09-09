@@ -10,7 +10,7 @@ import szakdoga.haztartas.firestore.DbHelper;
 import szakdoga.haztartas.homesList.HomesListActivity;
 
 public class FirebaseAuthHelper implements FirebaseAuthHelperInterface {
-    private final FirebaseAuth firebaseAuth;
+    private static FirebaseAuth firebaseAuth;
     private String uId = null;
     private DbHelper dbHelper;
 

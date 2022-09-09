@@ -15,6 +15,10 @@
         app:showAsAction="always" />
 
     <item
+        android:id="@+id/userSettings"
+        android:title="Fiók beállítások" />
+
+    <item
         android:id="@+id/settings"
         android:title="@string/beallitasok" />
     <item

@@ -341,4 +341,6 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         }
     }
 
+    public void shoppingList(View view) {
+    }
 }

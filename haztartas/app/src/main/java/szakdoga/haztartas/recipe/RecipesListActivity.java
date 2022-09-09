@@ -11,17 +11,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import szakdoga.haztartas.R;
 import szakdoga.haztartas.firebaseAuthentication.FirebaseAuthHelper;
 import szakdoga.haztartas.firestore.DbHelper;
-import szakdoga.haztartas.models.Ingredient;
 import szakdoga.haztartas.models.Recipe;
 
 public class RecipesListActivity extends AppCompatActivity {

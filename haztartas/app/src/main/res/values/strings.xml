@@ -45,4 +45,12 @@
     <string name="hozzavalo_modositasa">Hozzávaló módosítása</string>
     <string name="torles_az_adatbazisbol">Törlés az adatbázisból</string>
     <string name="fozes">Főzés</string>
+    <string name="email_">email:</string>
+    <string name="jelszo_modositasa">Jelszó módosítása</string>
+    <string name="jelszo_">jelszó:</string>
+    <string name="regi_jelszo">régi jelszó</string>
+    <string name="jelszo_modositasa_">jelszó módosítása:</string>
+    <string name="ertesites_engedelyezett_eszkozok">Értesítés engedélyek:</string>
+    <string name="ertesitesek_engedelyezese_erre_az_eszkozre">Értesítések engedélyezése erre az eszközre</string>
+    <string name="bevasarlo_lista">Bevásárló lista</string>
 </resources>

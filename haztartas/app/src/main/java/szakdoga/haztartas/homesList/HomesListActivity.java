@@ -1,11 +1,14 @@
 package szakdoga.haztartas.homesList;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,8 +17,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -23,9 +24,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import szakdoga.haztartas.R;
+import szakdoga.haztartas.UserSettingsActivity;
 import szakdoga.haztartas.firebaseAuthentication.FirebaseAuthHelper;
 import szakdoga.haztartas.firestore.DbHelper;
 import szakdoga.haztartas.models.Home;
+import szakdoga.haztartas.models.User;
 
 public class HomesListActivity extends AppCompatActivity {
 
@@ -55,6 +58,8 @@ public class HomesListActivity extends AppCompatActivity {
         homesRecylerView.setAdapter(homeItemAdapter);
         homesRecylerView.setLayoutManager(new LinearLayoutManager(this));
 
+        checkTokens();
+
     }
 
     @Override
@@ -62,6 +67,56 @@ public class HomesListActivity extends AppCompatActivity {
         super.onResume();
         firebaseAuthHelper.isAuthUser(userId, this);
         homesquery();
+    }
+
+    private void checkTokens() {
+        dbHelper.getUsersCollection().document(userId).get().addOnSuccessListener(data -> {
+            if (data != null){
+                FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()){
+                        String mobileToken = task.getResult();
+                        String mobileName = Build.MANUFACTURER + " " + Build.MODEL;
+                        boolean find = false;
+                        boolean findBlock = false;
+                        User user = data.toObject(User.class);
+                        if (user != null) {
+                            for (String token : user.getTokens()){
+                                if( mobileToken.equals(token)) {
+                                    find = true;
+                                    break;
+                                }
+                            }
+                            for (String blockToken : user.getBlockTokens()) {
+                                if (blockToken.equals(mobileToken)) {
+                                    findBlock = true;
+                                    break;
+                                }
+                            }
+
+                            if (!find && !findBlock) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                                builder.setTitle("Értesítések engedélyezése");
+                                builder.setMessage("Értesítéseket kaphat a háztartásban történt dolgokról.");
+
+                                builder.setNegativeButton("Tiltás", (dialogInterface, i) -> {
+                                    user.addBlockToken(mobileToken);
+                                    dbHelper.getUsersCollection().document(userId).update("blockTokens", user.getBlockTokens());
+                                });
+
+                                builder.setPositiveButton("Engedélyez", (dialogInterface, i) -> {
+                                    user.addToken(mobileToken, mobileName);
+                                    dbHelper.getUsersCollection().document(userId).update("tokens", user.getTokens());
+                                    dbHelper.getUsersCollection().document(userId).update("tokenNames", user.getTokenNames());
+                                });
+
+                                builder.create().show();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
     }
 
     public void newHome(View view) {
@@ -108,6 +163,12 @@ public class HomesListActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.logOut:
                 firebaseAuthHelper.logOut(this);
+                return true;
+
+            case R.id.userSettings:
+                Intent userSettingsIntent = new Intent(this, UserSettingsActivity.class);
+                userSettingsIntent.putExtra("userId", userId);
+                startActivity(userSettingsIntent);
                 return true;
 
             default:

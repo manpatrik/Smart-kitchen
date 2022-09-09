@@ -17,17 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import szakdoga.haztartas.R;
@@ -88,14 +80,7 @@ public class Settings extends AppCompatActivity {
         homeId = getIntent().getStringExtra("homeId");
 
         dbHelper.getHomeCollection().document(homeId).get().addOnSuccessListener(data ->{
-            home = new Home(
-                    data.getId(),
-                    data.get("name").toString(),
-                    data.get("ownerEmail").toString(),
-                    data.get("owner").toString(),
-                    (List<String>) data.get("guestIds"),
-                    (List<String>) data.get("guestEmails")
-            );
+            home = data.toObject(Home.class);
 
             householdNameEditText.setText(home.getName());
             ownerText.setText(home.getOwnerEmail());
