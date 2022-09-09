@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.TypedValue;
@@ -15,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -77,6 +79,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         firebaseAuthHelper.isAuthUser(userId, this);
     }
 
+    @SuppressLint("ResourceAsColor")
     private void recipeUpdate() {
         ingredientslayout.removeAllViews();
         dbHelper.getHomeCollection().document(homeId).collection("Recipes").document(recipe.getId()).get().addOnSuccessListener(data -> {
@@ -88,7 +91,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             recipeDescription.setText(recipe.getDescription());
             if(recipe.getIngredients() != null) {
                 for (Ingredient ingredient : recipe.getIngredients()) {
-                    TextView name = new TextView(this);
+                    CheckBox name = new CheckBox(this);
                     name.setText(ingredient.getQuantity() + " " + ingredient.getQuantityUnit() + " " + ingredient.getName());
                     ingredientslayout.addView(name);
                 }
@@ -104,7 +107,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
             recipeQuantityTextView.setText(num + "");
             for (int i = 0; i < ingredientslayout.getChildCount(); i++){
-                String tempText = ((TextView) ingredientslayout.getChildAt(i)).getText().toString();
+                String tempText = ((CheckBox) ingredientslayout.getChildAt(i)).getText().toString();
                 String quantity = tempText.split(" ")[0];
                 String textWithoutQuantity = tempText.replaceAll(quantity, "");
                 try {
@@ -112,9 +115,9 @@ public class RecipeDetailsActivity extends AppCompatActivity {
                     String newQuantityString = Float.toString(newQuantity);
 
                     if (newQuantityString.charAt(newQuantityString.length()-1) == '0'){
-                        ((TextView) ingredientslayout.getChildAt(i)).setText(Math.round(newQuantity) + textWithoutQuantity);
+                        ((CheckBox) ingredientslayout.getChildAt(i)).setText(Math.round(newQuantity) + textWithoutQuantity);
                     } else{
-                        ((TextView) ingredientslayout.getChildAt(i)).setText(newQuantity + textWithoutQuantity);
+                        ((CheckBox) ingredientslayout.getChildAt(i)).setText(newQuantity + textWithoutQuantity);
                     }
                 } catch (Exception ignored){}
 
@@ -130,7 +133,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         recipeQuantityTextView.setText(num + "");
 
         for (int i = 0; i < ingredientslayout.getChildCount(); i++){
-            String tempText = ((TextView) ingredientslayout.getChildAt(i)).getText().toString();
+            String tempText = ((CheckBox) ingredientslayout.getChildAt(i)).getText().toString();
             String quantity = tempText.split(" ")[0];
             String textWithiutQuantity = tempText.replaceAll(quantity, "");
             try {
@@ -138,9 +141,9 @@ public class RecipeDetailsActivity extends AppCompatActivity {
                 String newQuantityString = Float.toString(newQuantity);
 
                 if (newQuantityString.charAt(newQuantityString.length()-1) == '0'){
-                    ((TextView) ingredientslayout.getChildAt(i)).setText(Math.round(newQuantity) + textWithiutQuantity);
+                    ((CheckBox) ingredientslayout.getChildAt(i)).setText(Math.round(newQuantity) + textWithiutQuantity);
                 } else{
-                    ((TextView) ingredientslayout.getChildAt(i)).setText(newQuantity + textWithiutQuantity);
+                    ((CheckBox) ingredientslayout.getChildAt(i)).setText(newQuantity + textWithiutQuantity);
                 }
             } catch (Exception ignored){}
         }
@@ -342,5 +345,33 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     }
 
     public void shoppingList(View view) {
+        boolean nothing = true;
+        for (int i = 0; i < ingredientslayout.getChildCount(); i++) {
+            if (((CheckBox) ingredientslayout.getChildAt(i)).isChecked()){
+                nothing = false;
+                break;
+            }
+        }
+        if(nothing){
+            Toast.makeText(this, "Jelölje be mit szeretne a bevásárló listához adni!", Toast.LENGTH_SHORT).show();
+        } else {
+            AlertDialog.Builder newOrExistShoppingListBuider = new AlertDialog.Builder(this);
+            newOrExistShoppingListBuider.setTitle("Új vagy meglévő?");
+            newOrExistShoppingListBuider.setMessage("Új vagy már meglévő bevásárló listához szeretné adni a hozzávalókat?");
+
+            newOrExistShoppingListBuider.setPositiveButton("Új", ((dialogInterface, i) -> {
+
+            }));
+
+            newOrExistShoppingListBuider.setNegativeButton("Meglévő", ((dialogInterface, i) -> {
+
+            }));
+
+            newOrExistShoppingListBuider.setNeutralButton("Mégsem", ((dialogInterface, i) -> {
+                dialogInterface.cancel();
+            }));
+
+            newOrExistShoppingListBuider.create().show();
+        }
     }
 }

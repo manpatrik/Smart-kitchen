@@ -22,10 +22,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import java.util.List;
 import java.util.concurrent.Executors;
 
+import szakdoga.haztartas.FirebaseCloudMessaging.FCMSend;
 import szakdoga.haztartas.R;
 import szakdoga.haztartas.firebaseAuthentication.FirebaseAuthHelper;
 import szakdoga.haztartas.firestore.DbHelper;
 import szakdoga.haztartas.models.Home;
+import szakdoga.haztartas.models.User;
 
 public class Settings extends AppCompatActivity {
 
@@ -183,6 +185,14 @@ public class Settings extends AppCompatActivity {
 
                     Toast.makeText(this, "Sikeres hozzáadás!", Toast.LENGTH_SHORT).show();
                     householdGuestsList();
+
+                    dbHelper.getUsersCollection().document(data.get("userId").toString()).get().addOnSuccessListener(userData -> {
+                        User user = userData.toObject(User.class);
+
+                        for (String token : user.getTokens()){
+                            FCMSend.pushNotification(this, token, "Üdv a(z) "+ home.getName() + " háztartásban!", home.getOwnerEmail() + " megosztotta veled a házt artását!");
+                        }
+                    });
                 } else{
                     Toast.makeText(this, "Nincs ilyen felhasználó!", Toast.LENGTH_SHORT).show();
                 }
